@@ -6,7 +6,6 @@ import java.util.*;
 
 public class World {
     Map<Class<? extends Component>, List<Entity>> componentEntityMap = new HashMap<>();
-    List<Entity> entities = new ArrayList<>();
     List<System> systems = new ArrayList<>();
     int worldWidth;
     int worldHeight;
@@ -20,7 +19,11 @@ public class World {
     }
 
     public void addEntity(Entity entity) {
-        entities.add(entity);
+        for(Component c : entity.getComponents()) {
+            componentEntityMap
+                    .computeIfAbsent(c.getClass(), k -> new ArrayList<>())
+                    .add(entity);
+        }
     }
 
     public void addComponent(Entity entity, Component component) {

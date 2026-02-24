@@ -3,7 +3,7 @@ package dk.sdu.cbse.common.ecs;
 import java.util.HashSet;
 
 public abstract class Entity {
-    public HashSet<Component> components;
+    public HashSet<Component> components = new HashSet<>();
 
     public <T extends Component> T getComponent(Class<T> componentClass) {
         for(Component c : components) {
@@ -12,6 +12,10 @@ public abstract class Entity {
             }
         }
         return null;
+    }
+
+    public HashSet<Component> getComponents() {
+        return components;
     }
 
     public <T extends Component> void removeComponent(Class<T> componentClass) {

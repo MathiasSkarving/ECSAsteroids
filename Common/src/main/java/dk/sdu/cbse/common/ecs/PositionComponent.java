@@ -1,6 +1,6 @@
 package dk.sdu.cbse.common.ecs;
 
 public class PositionComponent extends Component {
-    int x;
-    int y;
+    public double x;
+    public double y;
 }

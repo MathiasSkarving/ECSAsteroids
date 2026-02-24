@@ -1,5 +1,6 @@
 package dk.sdu.cbse.core;
 
+import dk.sdu.cbse.player.PlayerPlugin;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.System;
+
 import dk.sdu.cbse.common.ecs.*;
 
 /**
@@ -34,7 +37,7 @@ public class App extends Application {
 
         game = new Game(width, height, gc);
 
-        scene.setOnKeyPressed(e -> {
+        gameScene.setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case UP -> game.world.inputHandler.keyPressed(GameKey.UP);
                 case DOWN -> game.world.inputHandler.keyPressed(GameKey.DOWN);
@@ -44,7 +47,7 @@ public class App extends Application {
             }
         });
 
-        scene.setOnKeyReleased(e -> {
+        gameScene.setOnKeyReleased(e -> {
             switch (e.getCode()) {
                 case UP -> game.world.inputHandler.keyReleased(GameKey.UP);
                 case DOWN -> game.world.inputHandler.keyReleased(GameKey.DOWN);
@@ -56,6 +59,12 @@ public class App extends Application {
 
         stage.show();
         stage.setTitle("AsteroidsFX");
+
+        game.world.addSystem(new RenderSystem(game.world, gc));
+        game.world.addSystem(new PositionSystem(game.world));
+
+        PlayerPlugin player = new PlayerPlugin();
+        player.start(game.world);
 
         AnimationTimer gameLoop = new AnimationTimer() {
             private long lastTime = 0;
@@ -74,5 +83,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }
