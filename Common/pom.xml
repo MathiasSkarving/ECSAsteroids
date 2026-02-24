@@ -17,11 +17,22 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>dk.sdu.cbse.common</groupId>
+    <groupId>dk.sdu.cbse.common.ecs</groupId>
     <artifactId>Common</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>13</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

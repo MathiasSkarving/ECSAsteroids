@@ -1,3 +1,6 @@
 module Common {
-    exports dk.sdu.cbse.common;
+    requires javafx.controls;
+    requires javafx.fxml;
+
+    exports dk.sdu.cbse.common.ecs;
 }
