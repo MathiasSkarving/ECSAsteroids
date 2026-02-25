@@ -8,7 +8,7 @@ public class Game {
     public World world;
 
     public Game(int width, int height, GraphicsContext gc) {
-        world = new World(width, height, gc);
+        world = new World(width, height);
     }
 
 

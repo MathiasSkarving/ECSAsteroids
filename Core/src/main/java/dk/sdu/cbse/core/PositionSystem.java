@@ -13,8 +13,8 @@ public class PositionSystem extends System {
 
     @Override
     public void update(float dt) {
-        List<Entity> entitiesToRender = world.getEntitiesWith(VelocityComponent.class, PositionComponent.class);
-        for (Entity e : entitiesToRender) {
+        List<Entity> entities = world.getEntitiesWith(VelocityComponent.class, PositionComponent.class);
+        for (Entity e : entities) {
            PositionComponent posComp = e.getComponent(PositionComponent.class);
            VelocityComponent velComp = e.getComponent(VelocityComponent.class);
 

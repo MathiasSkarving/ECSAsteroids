@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 public abstract class Entity {
     public HashSet<Component> components = new HashSet<>();
+    public boolean removeThis = false;
 
     public <T extends Component> T getComponent(Class<T> componentClass) {
         for(Component c : components) {

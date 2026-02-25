@@ -7,8 +7,8 @@ import java.util.List;
 
 public class PlayerSystem extends System {
     double maxSpeed = 25;
-    double acceleration = 5;
-    double dragForce = 0.9;
+    double acceleration = 99;
+    double dragForce = 5;
 
     @Override
     public void update(float dt) {
@@ -22,10 +22,10 @@ public class PlayerSystem extends System {
         velComp.velY = velComp.directionVel*Math.sin(Math.toRadians(rotComp.angle-90));
 
         if(world.inputHandler.isKeyPressed(GameKey.LEFT)) {
-            rotComp.angle = rotComp.angle-(180*dt);
+            rotComp.angle = rotComp.angle-(360*dt);
         }
         if(world.inputHandler.isKeyPressed(GameKey.RIGHT)) {
-            rotComp.angle = rotComp.angle+(180*dt);
+            rotComp.angle = rotComp.angle+(360*dt);
         }
         if(world.inputHandler.isKeyPressed(GameKey.UP)) {
             velComp.directionVel = Math.min(velComp.directionVel + acceleration * dt, maxSpeed);

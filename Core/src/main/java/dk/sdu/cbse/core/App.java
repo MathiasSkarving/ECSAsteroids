@@ -1,6 +1,5 @@
 package dk.sdu.cbse.core;
 
-import dk.sdu.cbse.player.PlayerPlugin;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.System;
+import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
 
@@ -62,9 +62,13 @@ public class App extends Application {
 
         game.world.addSystem(new RenderSystem(game.world, gc));
         game.world.addSystem(new PositionSystem(game.world));
+        game.world.addSystem(new OutOfBoundsSystem(game.world));
 
-        PlayerPlugin player = new PlayerPlugin();
-        player.start(game.world);
+        ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
+
+        for(IGamePlugin plugin : plugins){
+            plugin.start(game.world);
+        }
 
         AnimationTimer gameLoop = new AnimationTimer() {
             private long lastTime = 0;
