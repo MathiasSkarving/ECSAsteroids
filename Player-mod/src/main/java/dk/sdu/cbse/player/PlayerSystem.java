@@ -5,10 +5,20 @@ import dk.sdu.cbse.common.ecs.System;
 
 import java.util.List;
 
-public class PlayerSystem extends System {
+//TODO Implement eventbus in player system
+
+public class PlayerSystem extends System implements Subscriber {
     double maxSpeed = 25;
     double acceleration = 99;
     double dragForce = 5;
+
+    public PlayerSystem() {
+        EventBus.getInstance().subscribe(this, KeyEvent.class);
+    }
+
+    public void onEvent(Class<? extends EventType> event) {
+    }
+
 
     @Override
     public void update(float dt) {

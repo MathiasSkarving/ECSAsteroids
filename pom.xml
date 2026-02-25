@@ -15,12 +15,13 @@
         <module>Common</module>
         <module>Core</module>
         <module>Player-mod</module>
+        <module>Bullet-mod</module>
     </modules>
     <properties>
         <java>java</java>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
-        <maven.compiler.source>1.9</maven.compiler.source>
-        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <spring.version>6.1.3</spring.version>
     </properties>
     

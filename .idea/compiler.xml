@@ -9,6 +9,7 @@
         <module name="Player-mod" />
         <module name="Core" />
         <module name="Common" />
+        <module name="Bullet-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

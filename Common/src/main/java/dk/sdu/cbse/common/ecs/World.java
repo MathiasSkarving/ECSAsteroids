@@ -1,7 +1,5 @@
 package dk.sdu.cbse.common.ecs;
 
-import javafx.scene.canvas.GraphicsContext;
-
 import java.util.*;
 
 public class World {
@@ -9,7 +7,6 @@ public class World {
     List<System> systems = new ArrayList<>();
     public int worldWidth;
     public int worldHeight;
-    public InputHandler inputHandler = new InputHandler();
 
     public World(int width, int height) {
         worldHeight = height;

@@ -37,28 +37,10 @@ public class App extends Application {
 
         game = new Game(width, height, gc);
 
-        gameScene.setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case UP -> game.world.inputHandler.keyPressed(GameKey.UP);
-                case DOWN -> game.world.inputHandler.keyPressed(GameKey.DOWN);
-                case LEFT -> game.world.inputHandler.keyPressed(GameKey.LEFT);
-                case RIGHT -> game.world.inputHandler.keyPressed(GameKey.RIGHT);
-                case SPACE -> game.world.inputHandler.keyPressed(GameKey.FIRE);
-            }
-        });
-
-        gameScene.setOnKeyReleased(e -> {
-            switch (e.getCode()) {
-                case UP -> game.world.inputHandler.keyReleased(GameKey.UP);
-                case DOWN -> game.world.inputHandler.keyReleased(GameKey.DOWN);
-                case LEFT -> game.world.inputHandler.keyReleased(GameKey.LEFT);
-                case RIGHT -> game.world.inputHandler.keyReleased(GameKey.RIGHT);
-                case SPACE -> game.world.inputHandler.keyReleased(GameKey.FIRE);
-            }
-        });
-
         stage.show();
         stage.setTitle("AsteroidsFX");
+
+        InputHandler handler = new InputHandler(gameScene);
 
         game.world.addSystem(new RenderSystem(game.world, gc));
         game.world.addSystem(new PositionSystem(game.world));
