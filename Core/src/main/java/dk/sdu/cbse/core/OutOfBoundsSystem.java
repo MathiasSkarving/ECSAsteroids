@@ -3,6 +3,7 @@ package dk.sdu.cbse.core;
 import dk.sdu.cbse.common.ecs.*;
 import dk.sdu.cbse.common.ecs.System;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class OutOfBoundsSystem extends System {
@@ -12,7 +13,7 @@ public class OutOfBoundsSystem extends System {
 
     @Override
     public void update(float dt) {
-        List<Entity> entities = world.getEntitiesWith(OutOfBoundsComponent.class, PositionComponent.class);
+        HashSet<Entity> entities = world.getEntitiesWith(OutOfBoundsComponent.class, PositionComponent.class);
         for(Entity e : entities) {
             OutOfBoundsComponent outOfBoundsComponent = e.getComponent(OutOfBoundsComponent.class);
             if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.WRAP) {

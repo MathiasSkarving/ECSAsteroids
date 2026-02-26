@@ -3,7 +3,7 @@ package dk.sdu.cbse.common.ecs;
 import java.util.*;
 
 public class World {
-    Map<Class<? extends Component>, List<Entity>> componentEntityMap = new HashMap<>();
+    Map<Class<? extends Component>, HashSet<Entity>> componentEntityMap = new HashMap<>();
     List<System> systems = new ArrayList<>();
     public int worldWidth;
     public int worldHeight;
@@ -16,14 +16,14 @@ public class World {
     public void addEntity(Entity entity) {
         for(Component c : entity.getComponents()) {
             componentEntityMap
-                    .computeIfAbsent(c.getClass(), k -> new ArrayList<>())
+                    .computeIfAbsent(c.getClass(), k -> new HashSet<>())
                     .add(entity);
         }
     }
 
     public void removeEntity(Entity entity) {
         for (Component c : entity.getComponents()) {
-            List<Entity> list = componentEntityMap.get(c.getClass());
+            HashSet<Entity> list = componentEntityMap.get(c.getClass());
             if (list != null) {
                 list.remove(entity);
             }
@@ -33,7 +33,7 @@ public class World {
     public void addComponent(Entity entity, Component component) {
         entity.addComponent(component);
         if (!componentEntityMap.containsKey(component.getClass())) {
-            componentEntityMap.put(component.getClass(), new ArrayList<>());
+            componentEntityMap.put(component.getClass(), new HashSet<>());
         }
         componentEntityMap.get(component.getClass()).add(entity);
     }
@@ -44,20 +44,20 @@ public class World {
     }
 
     @SafeVarargs
-    public final List<Entity> getEntitiesWith(Class<? extends Component>... componentTypes) {
-        List<Entity> result = componentEntityMap.getOrDefault(componentTypes[0], new ArrayList<>());
+    public final HashSet<Entity> getEntitiesWith(Class<? extends Component>... componentTypes) {
+        HashSet<Entity> result = componentEntityMap.getOrDefault(componentTypes[0], new HashSet<>());
         for (int i = 1; i < componentTypes.length; i++) {
-            result.retainAll(componentEntityMap.getOrDefault(componentTypes[i], new ArrayList<>()));
+            result.retainAll(componentEntityMap.getOrDefault(componentTypes[i], new HashSet<>()));
         }
         return result;
     }
 
-    public final List<Entity> getEntitiesWith() {
+    public final HashSet<Entity> getEntitiesWith() {
         HashSet<Entity> entities = new HashSet<>();
-        for(List<Entity> e : componentEntityMap.values()) {
+        for(HashSet<Entity> e : componentEntityMap.values()) {
             entities.addAll(e);
         }
-        return entities.stream().toList();
+        return entities;
     }
 
     public void update(float dt) {

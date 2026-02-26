@@ -9,6 +9,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Polygon;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class RenderSystem extends System {
@@ -23,7 +24,7 @@ public class RenderSystem extends System {
     public void update(float dt) {
         gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 
-        List<Entity> entitiesToRender = world.getEntitiesWith(RenderComponent.class, PositionComponent.class, RotationComponent.class);
+        HashSet<Entity> entitiesToRender = world.getEntitiesWith(RenderComponent.class, PositionComponent.class, RotationComponent.class);
         for (Entity e : entitiesToRender) {
             RenderComponent   rc  = e.getComponent(RenderComponent.class);
             PositionComponent pos = e.getComponent(PositionComponent.class);

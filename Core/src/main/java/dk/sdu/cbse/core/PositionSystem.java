@@ -4,6 +4,7 @@ import dk.sdu.cbse.common.ecs.*;
 import dk.sdu.cbse.common.ecs.System;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class PositionSystem extends System {
@@ -13,7 +14,7 @@ public class PositionSystem extends System {
 
     @Override
     public void update(float dt) {
-        List<Entity> entities = world.getEntitiesWith(VelocityComponent.class, PositionComponent.class);
+        HashSet<Entity> entities = world.getEntitiesWith(VelocityComponent.class, PositionComponent.class);
         for (Entity e : entities) {
            PositionComponent posComp = e.getComponent(PositionComponent.class);
            VelocityComponent velComp = e.getComponent(VelocityComponent.class);

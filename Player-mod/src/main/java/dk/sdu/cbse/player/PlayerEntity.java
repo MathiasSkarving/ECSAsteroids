@@ -2,8 +2,6 @@ package dk.sdu.cbse.player;
 
 import dk.sdu.cbse.common.ecs.*;
 
-import java.util.HexFormat;
-
 public class PlayerEntity extends Entity {
     public PlayerEntity() {
         addComponent(new VelocityComponent());
@@ -14,8 +12,8 @@ public class PlayerEntity extends Entity {
         addComponent(new OutOfBoundsComponent());
 
         RenderComponent rendCom = getComponent(RenderComponent.class);
-        rendCom.xPoints = new double[] {300, 340, 350, 340, 300, 260, 250, 260};
-        rendCom.yPoints = new double[] {120, 200, 310, 390, 420, 390, 310, 200};
+        rendCom.xPoints = new double[] {20, 30, 40};
+        rendCom.yPoints = new double[] {20, 60, 20};
 
         Helpers.centerPoints(rendCom.xPoints, rendCom.yPoints);
 
