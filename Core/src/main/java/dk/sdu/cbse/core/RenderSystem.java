@@ -29,16 +29,7 @@ public class RenderSystem extends System {
             RenderComponent   rc  = e.getComponent(RenderComponent.class);
             PositionComponent pos = e.getComponent(PositionComponent.class);
             RotationComponent rot = e.getComponent(RotationComponent.class);
-
-            java.lang.System.out.println("pos: " + pos.x + ", " + pos.y);
-            java.lang.System.out.println("angle: " + rot.angle);
-            java.lang.System.out.println("color: " + rc.hexColor);
-            java.lang.System.out.println("xPoints: " + java.util.Arrays.toString(rc.xPoints));
-            java.lang.System.out.println("yPoints: " + java.util.Arrays.toString(rc.yPoints));
-            java.lang.System.out.println("canvas size: " + gc.getCanvas().getWidth() + "x" + gc.getCanvas().getHeight());
-
             gc.save();
-
             gc.translate(pos.x, pos.y);
             gc.rotate(rot.angle);
             gc.setFill(Color.web(rc.hexColor));

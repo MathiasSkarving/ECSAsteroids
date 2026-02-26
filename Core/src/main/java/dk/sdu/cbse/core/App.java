@@ -23,8 +23,8 @@ public class App extends Application {
 
     private static Scene scene;
     private Game game;
-    private int width = 1000;
-    private int height = 1000;
+    private int width = (int)(1920*0.8);
+    private int height = (int)(1080*0.8);
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -27,29 +27,51 @@ public class PlayerSystem extends System implements Subscriber {
         }
     }
 
-
     @Override
     public void update(float dt) {
         HashSet<Entity> players = world.getEntitiesWith(PlayerComponent.class, RotationComponent.class, VelocityComponent.class, PositionComponent.class, RenderComponent.class);
         for (Entity p : players) {
-            VelocityComponent velComp = p.getComponent(VelocityComponent.class);
-            RotationComponent rotComp = p.getComponent(RotationComponent.class);
+            if (p.getComponent(PlayerComponent.class).playerId == 1) {
 
-            velComp.velX = velComp.directionVel * Math.cos(Math.toRadians(rotComp.angle + 90));
-            velComp.velY = velComp.directionVel * Math.sin(Math.toRadians(rotComp.angle + 90));
+                VelocityComponent velComp = p.getComponent(VelocityComponent.class);
+                RotationComponent rotComp = p.getComponent(RotationComponent.class);
 
-            if (keysPressed.contains(GameKey.LEFT)) {
-                rotComp.angle = rotComp.angle - (360 * dt);
+                velComp.velX = velComp.directionVel * Math.cos(Math.toRadians(rotComp.angle + 90));
+                velComp.velY = velComp.directionVel * Math.sin(Math.toRadians(rotComp.angle + 90));
+
+                if (keysPressed.contains(GameKey.LEFT)) {
+                    rotComp.angle = rotComp.angle - (180 * dt);
+                }
+                if (keysPressed.contains(GameKey.RIGHT)) {
+                    rotComp.angle = rotComp.angle + (180 * dt);
+                }
+                if (keysPressed.contains(GameKey.UP)) {
+                    velComp.directionVel = Math.min(velComp.directionVel + acceleration * dt, maxSpeed);
+                }
+                if (!keysPressed.contains(GameKey.UP)) {
+                    velComp.directionVel *= (1.0 - dragForce * dt);
+                }
+            } else if (p.getComponent(PlayerComponent.class).playerId == 2) {
+                VelocityComponent velComp = p.getComponent(VelocityComponent.class);
+                RotationComponent rotComp = p.getComponent(RotationComponent.class);
+
+                velComp.velX = velComp.directionVel * Math.cos(Math.toRadians(rotComp.angle + 90));
+                velComp.velY = velComp.directionVel * Math.sin(Math.toRadians(rotComp.angle + 90));
+
+                if (keysPressed.contains(GameKey.LEFTA)) {
+                    rotComp.angle = rotComp.angle - (180 * dt);
+                }
+                if (keysPressed.contains(GameKey.RIGHTD)) {
+                    rotComp.angle = rotComp.angle + (180 * dt);
+                }
+                if (keysPressed.contains(GameKey.UPW)) {
+                    velComp.directionVel = Math.min(velComp.directionVel + acceleration * dt, maxSpeed);
+                }
+                if (!keysPressed.contains(GameKey.UPW)) {
+                    velComp.directionVel *= (1.0 - dragForce * dt);
+                }
             }
-            if (keysPressed.contains(GameKey.RIGHT)) {
-                rotComp.angle = rotComp.angle + (360 * dt);
-            }
-            if (keysPressed.contains(GameKey.UP)) {
-                velComp.directionVel = Math.min(velComp.directionVel + acceleration * dt, maxSpeed);
-            }
-            if (!keysPressed.contains(GameKey.UP)) {
-                velComp.directionVel *= (1.0 - dragForce * dt);
-            }
+
         }
     }
 }

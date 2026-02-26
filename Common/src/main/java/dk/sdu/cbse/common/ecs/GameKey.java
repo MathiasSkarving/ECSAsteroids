@@ -6,4 +6,10 @@ public enum GameKey {
     LEFT,
     RIGHT,
     FIRE,
+
+    W,
+    S,
+    A,
+    D,
+    FIRE2,
 }
