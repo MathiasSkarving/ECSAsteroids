@@ -5,11 +5,15 @@ public enum GameKey {
     DOWN,
     LEFT,
     RIGHT,
-    FIRE,
-
+    SPACE,
     W,
     S,
     A,
     D,
-    FIRE2,
+    ENTER,
+    ESCAPE,
+    U,
+    I,
+    O,
+    P,
 }

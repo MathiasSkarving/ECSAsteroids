@@ -19,8 +19,7 @@ public class PositionSystem extends System {
            PositionComponent posComp = e.getComponent(PositionComponent.class);
            VelocityComponent velComp = e.getComponent(VelocityComponent.class);
 
-           posComp.x += velComp.velX;
-           posComp.y += velComp.velY;
+           posComp.position = posComp.position.add(velComp.velocity.scale(dt));
         }
     }
 }

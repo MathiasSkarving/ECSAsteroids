@@ -30,7 +30,7 @@ public class RenderSystem extends System {
             PositionComponent pos = e.getComponent(PositionComponent.class);
             RotationComponent rot = e.getComponent(RotationComponent.class);
             gc.save();
-            gc.translate(pos.x, pos.y);
+            gc.translate(pos.position.x, pos.position.y);
             gc.rotate(rot.angle);
             gc.setFill(Color.web(rc.hexColor));
             gc.fillPolygon(rc.xPoints, rc.yPoints, rc.xPoints.length);

@@ -18,31 +18,31 @@ public class OutOfBoundsSystem extends System {
             OutOfBoundsComponent outOfBoundsComponent = e.getComponent(OutOfBoundsComponent.class);
             if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.WRAP) {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
-                if(pos.x > world.worldWidth + 100) {
-                    pos.x = -100;
+                if(pos.position.x > world.worldWidth + 100) {
+                    pos.position.x = -100;
                 }
-                if(pos.x < -100) {
-                    pos.x = world.worldWidth + 100;
+                if(pos.position.x < -100) {
+                    pos.position.x = world.worldWidth + 100;
                 }
-                if(pos.y > world.worldHeight + 100) {
-                    pos.y = -100;
+                if(pos.position.y > world.worldHeight + 100) {
+                    pos.position.y = -100;
                 }
-                if(pos.y < -100) {
-                    pos.y = world.worldHeight + 100;
+                if(pos.position.y < -100) {
+                    pos.position.y = world.worldHeight + 100;
                 }
             }
             else if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.REMOVE) {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
-                if(pos.x > world.worldWidth + 100) {
+                if(pos.position.x > world.worldWidth + 100) {
                     e.removeThis = true;
                 }
-                if(pos.x < -100) {
+                if(pos.position.x < -100) {
                     e.removeThis = true;
                 }
-                if(pos.y > world.worldHeight + 100) {
+                if(pos.position.y > world.worldHeight + 100) {
                     e.removeThis = true;
                 }
-                if(pos.y < -100) {
+                if(pos.position.y < -100) {
                     e.removeThis = true;
                 }
             }

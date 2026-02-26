@@ -1,7 +1,9 @@
 package dk.sdu.cbse.common.ecs;
 
 public class VelocityComponent extends Component {
-    public double directionVel;
-    public double velX;
-    public double velY;
+    public Vector2 velocity;
+
+    public VelocityComponent(Vector2 velocity) {
+        this.velocity = velocity;
+    }
 }

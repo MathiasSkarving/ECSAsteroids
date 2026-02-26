@@ -1,14 +1,11 @@
 package dk.sdu.cbse.bullet;
 
-import dk.sdu.cbse.common.ecs.Entity;
-import dk.sdu.cbse.common.ecs.PositionComponent;
-import dk.sdu.cbse.common.ecs.RenderComponent;
-import dk.sdu.cbse.common.ecs.VelocityComponent;
+import dk.sdu.cbse.common.ecs.*;
 
 public class BulletEntity extends Entity {
     public BulletEntity() {
-        addComponent(new VelocityComponent());
-        addComponent(new PositionComponent());
+        addComponent(new VelocityComponent(new Vector2(0,0)));
+        addComponent(new PositionComponent(new Vector2(0,0)));
         addComponent(new RenderComponent());
     }
 }

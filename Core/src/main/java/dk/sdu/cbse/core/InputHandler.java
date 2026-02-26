@@ -16,12 +16,14 @@ public class InputHandler {
                 case DOWN -> keyPressed(new KeyEvent(GameKey.DOWN, true));
                 case LEFT -> keyPressed(new KeyEvent(GameKey.LEFT, true));
                 case RIGHT -> keyPressed(new KeyEvent(GameKey.RIGHT, true));
-                case SPACE -> keyPressed(new KeyEvent(GameKey.FIRE, true));
+                case SPACE -> keyPressed(new KeyEvent(GameKey.SPACE, true));
                 case W -> keyPressed(new KeyEvent(GameKey.W, true));
                 case S -> keyPressed(new KeyEvent(GameKey.S, true));
                 case A -> keyPressed(new KeyEvent(GameKey.A, true));
                 case D -> keyPressed(new KeyEvent(GameKey.D, true));
-                case ENTER -> keyPressed(new KeyEvent(GameKey.FIRE2, true));
+                case ENTER -> keyPressed(new KeyEvent(GameKey.ENTER, true));
+                case U -> keyPressed(new KeyEvent(GameKey.U, true));
+                case ESCAPE -> keyPressed(new KeyEvent(GameKey.ESCAPE, true));
             }
         });
 
@@ -31,12 +33,14 @@ public class InputHandler {
                 case DOWN -> keyReleased(new KeyEvent(GameKey.DOWN, false));
                 case LEFT -> keyReleased(new KeyEvent(GameKey.LEFT, false));
                 case RIGHT -> keyReleased(new KeyEvent(GameKey.RIGHT, false));
-                case SPACE -> keyReleased(new KeyEvent(GameKey.FIRE, false));
+                case SPACE -> keyReleased(new KeyEvent(GameKey.SPACE, false));
                 case W -> keyReleased(new KeyEvent(GameKey.W, false));
                 case S -> keyReleased(new KeyEvent(GameKey.S, false));
                 case A -> keyReleased(new KeyEvent(GameKey.A, false));
                 case D -> keyReleased(new KeyEvent(GameKey.D, false));
-                case ENTER -> keyReleased(new KeyEvent(GameKey.FIRE2, false));
+                case ENTER -> keyReleased(new KeyEvent(GameKey.ENTER, false));
+                case U -> keyPressed(new KeyEvent(GameKey.U, false));
+                case ESCAPE -> keyPressed(new KeyEvent(GameKey.ESCAPE, false));
             }
         });
     }

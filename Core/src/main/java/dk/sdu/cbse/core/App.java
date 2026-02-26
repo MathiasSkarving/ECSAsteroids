@@ -23,8 +23,8 @@ public class App extends Application {
 
     private static Scene scene;
     private Game game;
-    private int width = (int)(1920*0.8);
-    private int height = (int)(1080*0.8);
+    private int width = (int)(1920);
+    private int height = (int)(1080);
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -46,6 +46,8 @@ public class App extends Application {
         game.world.addSystem(new PositionSystem(game.world));
         game.world.addSystem(new OutOfBoundsSystem(game.world));
         game.world.addSystem(new RemoveEntitySystem(game.world));
+        game.world.addSystem(new CollisionSystem(game.world));
+
 
         ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
 
