@@ -31,11 +31,7 @@ public class PlayerEntity extends Entity {
         outBound.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.WRAP;
 
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
-        double maxDist = 0;
-        for (int i = 0; i < rendCom.xPoints.length; i++) {
-            double dist = Math.sqrt(rendCom.xPoints[i] * rendCom.xPoints[i] + rendCom.yPoints[i] * rendCom.yPoints[i]);
-            maxDist = Math.max(maxDist, dist);
-        }
-        circleColliderComponent.radius = maxDist;
+
+        circleColliderComponent.radius = Helpers.calculateColliderRadiusFromPoints(rendCom.xPoints, rendCom.yPoints);
     }
 }

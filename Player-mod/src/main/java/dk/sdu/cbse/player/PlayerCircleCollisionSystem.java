@@ -5,9 +5,9 @@ import dk.sdu.cbse.common.ecs.System;
 
 import java.util.ArrayList;
 
-public class PlayerCollisionSystem extends System implements Subscriber {
+public class PlayerCircleCollisionSystem extends System implements Subscriber {
 
-    public PlayerCollisionSystem() {
+    public PlayerCircleCollisionSystem() {
         EventBus.getInstance().subscribe(this, CollisionEvent.class);
     }
 

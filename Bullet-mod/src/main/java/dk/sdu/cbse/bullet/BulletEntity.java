@@ -7,5 +7,6 @@ public class BulletEntity extends Entity {
         addComponent(new VelocityComponent(new Vector2(0,0)));
         addComponent(new PositionComponent(new Vector2(0,0)));
         addComponent(new RenderComponent());
+        addComponent(new CircleColliderComponent());
     }
 }

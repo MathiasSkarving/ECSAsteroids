@@ -6,8 +6,8 @@ import dk.sdu.cbse.common.ecs.System;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollisionSystem extends System {
-    public CollisionSystem(World world) {
+public class CircleCollisionSystem extends System {
+    public CircleCollisionSystem(World world) {
         this.world = world;
     }
 

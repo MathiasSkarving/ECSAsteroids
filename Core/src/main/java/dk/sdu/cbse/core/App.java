@@ -2,16 +2,13 @@ package dk.sdu.cbse.core;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.System;
 import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
@@ -46,7 +43,7 @@ public class App extends Application {
         game.world.addSystem(new PositionSystem(game.world));
         game.world.addSystem(new OutOfBoundsSystem(game.world));
         game.world.addSystem(new RemoveEntitySystem(game.world));
-        game.world.addSystem(new CollisionSystem(game.world));
+        game.world.addSystem(new CircleCollisionSystem(game.world));
 
 
         ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
