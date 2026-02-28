@@ -17,6 +17,7 @@ public class PlayerEntity extends Entity {
         addComponent(new AccelerationComponent(new Vector2(0,0)));
 
         RenderComponent rendCom = getComponent(RenderComponent.class);
+
         rendCom.vertices = new Vector2[3];
         rendCom.vertices[0] = new Vector2(40,40);
         rendCom.vertices[1] = new Vector2(60,95);

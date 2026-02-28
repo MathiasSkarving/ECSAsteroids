@@ -47,5 +47,17 @@ public class Helpers {
         return yPoints;
     }
 
+    public static Vector2[] makeCircle(double radius, int points) {
+        Vector2[] vertices = new Vector2[points];
+        double increments = 360 / (double)points;
 
+        for(int i = 0; i < points; i++) {
+            double x = Math.cos(Math.toRadians(increments*i));
+            double y = Math.sin(Math.toRadians(increments*i));
+            vertices[i] = new Vector2(x,y);
+            vertices[i] = vertices[i].scale(radius);
+        }
+
+        return vertices;
+    }
 }
