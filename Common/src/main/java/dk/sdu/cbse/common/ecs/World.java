@@ -7,6 +7,7 @@ public class World {
     List<System> systems = new ArrayList<>();
     public int worldWidth;
     public int worldHeight;
+    public double dragForce = 0.5;
 
     public World(int width, int height) {
         worldHeight = height;

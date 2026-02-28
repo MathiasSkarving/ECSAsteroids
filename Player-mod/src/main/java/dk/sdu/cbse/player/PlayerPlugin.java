@@ -15,10 +15,12 @@ public class PlayerPlugin implements IGamePlugin {
         player1Controls.put(GameAction.Accelerate, GameKey.W);
         player1Controls.put(GameAction.RotateLeft, GameKey.A);
         player1Controls.put(GameAction.RotateRight, GameKey.D);
+        player1Controls.put(GameAction.Shoot, GameKey.SPACE);
 
         player2Controls.put(GameAction.Accelerate, GameKey.UP);
         player2Controls.put(GameAction.RotateLeft, GameKey.LEFT);
         player2Controls.put(GameAction.RotateRight, GameKey.RIGHT);
+        player2Controls.put(GameAction.Shoot, GameKey.ENTER);
     }
 
     @Override

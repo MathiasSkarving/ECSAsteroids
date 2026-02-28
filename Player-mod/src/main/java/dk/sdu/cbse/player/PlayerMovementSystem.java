@@ -6,8 +6,8 @@ import dk.sdu.cbse.common.ecs.System;
 import java.util.HashSet;
 
 public class PlayerMovementSystem extends System implements Subscriber {
-    double thrustForce = 1000;
-    double dragForce = 0.75;
+    double thrustForce = 2500;
+    double dragForce = 0.5;
     HashSet<GameKey> keysPressed;
 
     public PlayerMovementSystem() {
@@ -36,10 +36,10 @@ public class PlayerMovementSystem extends System implements Subscriber {
             PlayerComponent playerComponent = p.getComponent(PlayerComponent.class);
 
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateLeft))) {
-                rotationComponent.angle = rotationComponent.angle - (180 * dt);
+                rotationComponent.angle = rotationComponent.angle - (270 * dt);
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateRight))) {
-                rotationComponent.angle = rotationComponent.angle + (180 * dt);
+                rotationComponent.angle = rotationComponent.angle + (270 * dt);
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 double angle = rotationComponent.angle + rotationComponent.angleOffset;

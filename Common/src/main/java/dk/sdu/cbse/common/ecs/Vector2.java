@@ -8,6 +8,11 @@ public class Vector2 {
         this.y = y;
     }
 
+    public Vector2(double angle) {
+        this.x = Math.cos(Math.toRadians(angle));
+        this.y = Math.sin(Math.toRadians(angle));
+    }
+
     public Vector2() {
         this.x = 0;
         this.y = 0;

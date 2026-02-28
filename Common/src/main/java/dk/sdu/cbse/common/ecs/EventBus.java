@@ -20,6 +20,7 @@ public class EventBus {
 
     public void notifySubscribers(EventType event) {
         HashSet<Subscriber> eventSubs = eventTypeSubscriberMap.get(event.getClass());
+        if (eventSubs == null) return;
         for(Subscriber sub : eventSubs) {
             sub.onEvent(event);
         }

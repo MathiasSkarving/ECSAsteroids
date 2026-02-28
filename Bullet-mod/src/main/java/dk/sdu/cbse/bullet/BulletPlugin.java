@@ -6,7 +6,7 @@ import dk.sdu.cbse.common.ecs.World;
 public class BulletPlugin implements IGamePlugin {
     @Override
     public void start(World world) {
-
+        world.addSystem(new ShootingSystem());
     }
 
     @Override
