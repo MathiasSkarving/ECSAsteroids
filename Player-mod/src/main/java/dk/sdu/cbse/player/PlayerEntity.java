@@ -17,21 +17,17 @@ public class PlayerEntity extends Entity {
         addComponent(new AccelerationComponent(new Vector2(0,0)));
 
         RenderComponent rendCom = getComponent(RenderComponent.class);
-        rendCom.xPoints = new double[] {20, 30, 40};
-        rendCom.yPoints = new double[] {20, 60, 20};
-
+        rendCom.vertices = new Vector2[3];
+        rendCom.vertices[0] = new Vector2(40,40);
+        rendCom.vertices[1] = new Vector2(60,95);
+        rendCom.vertices[2] = new Vector2(80,40);
         RotationComponent rotationComponent = getComponent(RotationComponent.class);
         rotationComponent.angleOffset = angleOffset;
-
-        Helpers.centerPoints(rendCom.xPoints, rendCom.yPoints);
-
-        rendCom.hexColor = hexColor;
-
+        Helpers.centerPoints(rendCom.vertices);
+        rendCom.fillColor = hexColor;
         OutOfBoundsComponent outBound = getComponent(OutOfBoundsComponent.class);
         outBound.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.WRAP;
-
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
-
-        circleColliderComponent.radius = Helpers.calculateColliderRadiusFromPoints(rendCom.xPoints, rendCom.yPoints);
+        circleColliderComponent.radius = Helpers.calculateColliderRadiusFromVertices(rendCom.vertices);
     }
 }

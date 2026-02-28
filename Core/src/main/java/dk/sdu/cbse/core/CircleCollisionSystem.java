@@ -30,7 +30,6 @@ public class CircleCollisionSystem extends System {
         }
     }
 
-
     public void NotifyCollision(CollisionEvent collisionEvent) {
         EventBus.getInstance().notifySubscribers(collisionEvent);
     }

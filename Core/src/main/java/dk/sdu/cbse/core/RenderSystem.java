@@ -32,8 +32,13 @@ public class RenderSystem extends System {
             gc.save();
             gc.translate(pos.position.x, pos.position.y);
             gc.rotate(rot.angle);
-            gc.setFill(Color.web(rc.hexColor));
-            gc.fillPolygon(rc.xPoints, rc.yPoints, rc.xPoints.length);
+            gc.setFill(Color.web(rc.fillColor));
+//            if(!rc.strokeColor.isBlank()) {
+//                gc.setStroke(Color.web(rc.strokeColor));
+//                gc.setLineWidth(rc.strokeWidth);
+//                gc.strokePolygon(Helpers.calculateXpointsFromVectors(rc.vertices), Helpers.calculateYpointsFromVectors(rc.vertices), rc.vertices.length);
+//            }
+            gc.fillPolygon(Helpers.calculateXpointsFromVectors(rc.vertices), Helpers.calculateYpointsFromVectors(rc.vertices), rc.vertices.length);
             gc.restore();
         }
     }
