@@ -24,6 +24,5 @@ public class BulletEntity extends Entity {
 
         addComponent(new RotationComponent());
         addComponent(new BulletComponent());
-
     }
 }

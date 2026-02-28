@@ -15,6 +15,7 @@ public class PlayerEntity extends Entity {
         addComponent(new OutOfBoundsComponent());
         addComponent(new CircleColliderComponent());
         addComponent(new AccelerationComponent(new Vector2(0,0)));
+        addComponent(new TimerComponent(1000));
 
         RenderComponent rendCom = getComponent(RenderComponent.class);
 
