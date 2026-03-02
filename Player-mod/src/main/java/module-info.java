@@ -3,6 +3,7 @@ import dk.sdu.cbse.player.PlayerPlugin;
 
 module Player {
     requires Common;
+    requires jdk.jfr;
 
     provides IGamePlugin with PlayerPlugin;
 }

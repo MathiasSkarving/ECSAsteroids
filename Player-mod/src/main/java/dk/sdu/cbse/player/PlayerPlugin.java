@@ -29,7 +29,7 @@ public class PlayerPlugin implements IGamePlugin {
         PlayerEntity player2 = new PlayerEntity("00FF00",2, player2Controls, 600, 600, 90);
         world.addEntity(player1);
         world.addEntity(player2);
-        world.addSystem(new PlayerMovementSystem());
+        world.addSystem(new PlayerInteractionSystem());
         world.addSystem(new PlayerCircleCollisionSystem());
     }
 

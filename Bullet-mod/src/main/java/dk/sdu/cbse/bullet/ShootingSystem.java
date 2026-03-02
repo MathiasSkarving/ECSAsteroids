@@ -2,47 +2,40 @@ package dk.sdu.cbse.bullet;
 
 import dk.sdu.cbse.common.ecs.*;
 import dk.sdu.cbse.common.ecs.System;
+import javafx.geometry.Pos;
 
 import java.util.HashSet;
 
 public class ShootingSystem extends System implements Subscriber {
-    HashSet<GameKey> keysPressed = new HashSet<>();
+
+    private double bulletSpeed = 500;
 
     public ShootingSystem() {
-        EventBus.getInstance().subscribe(this, KeyEvent.class);
+        EventBus.getInstance().subscribe(this, ShootingEvent.class);
     }
 
     @Override
     public void onEvent(EventType event) {
-        if (event.getClass() == KeyEvent.class) {
-            if (((KeyEvent) event).getPressed()) {
-                keysPressed.add(((KeyEvent) event).getKey());
-            } else {
-                keysPressed.remove(((KeyEvent) event).getKey());
+        if (event.getClass() == ShootingEvent.class) {
+            ShootingEvent shootingEvent = (ShootingEvent) event;
+            Entity source = shootingEvent.source;
+            RotationComponent rotationComponent;
+            PositionComponent positionComponent;
+            if(source.getComponent(RotationComponent.class) == null) {
+                return;
             }
+            if(source.getComponent(PositionComponent.class) == null) {
+                return;
+            }
+            rotationComponent = source.getComponent(RotationComponent.class);
+            positionComponent = source.getComponent(PositionComponent.class);
+            Vector2 bulletVelocity = new Vector2(rotationComponent.angle + rotationComponent.angleOffset);
+            bulletVelocity = bulletVelocity.scale(bulletSpeed);
+            world.addEntity(new BulletEntity(5, bulletVelocity, positionComponent.position));
         }
     }
 
     @Override
     public void update(float dt) {
-        HashSet<Entity> entities = world.getEntitiesWith(PlayerComponent.class);
-        for (Entity e : entities) {
-            double nowMillis = java.lang.System.nanoTime() / (double) 1000000;
-            TimerComponent timer = e.getComponent(TimerComponent.class);
-            if (nowMillis - timer.lastTick > timer.millisInterval) {
-                PlayerComponent playerComponent = e.getComponent(PlayerComponent.class);
-                if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Shoot))) {
-                    java.lang.System.out.println("SHOT");
-                    PositionComponent positionComponent = e.getComponent(PositionComponent.class);
-                    PositionComponent bulletPosition = new PositionComponent(new Vector2());
-                    bulletPosition.position = positionComponent.position;
-                    RotationComponent rotationComponent = e.getComponent(RotationComponent.class);
-                    Vector2 bulletVelocity = new Vector2(rotationComponent.angle + rotationComponent.angleOffset);
-                    bulletVelocity = bulletVelocity.scale(500);
-                    world.addEntity(new BulletEntity(5, bulletVelocity, positionComponent.position));
-                }
-                timer.lastTick = java.lang.System.nanoTime()/(double)1000000;
-            }
-        }
     }
 }

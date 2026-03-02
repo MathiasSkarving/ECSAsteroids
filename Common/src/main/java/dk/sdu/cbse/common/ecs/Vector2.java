@@ -41,4 +41,11 @@ public class Vector2 {
     public Vector2 normalize() {
         return scale(1/magnitude());
     }
+
+    public double angleBetween(Vector2 other) {
+        double angle = 0;
+        double dot = dot(other);
+        angle = Math.acos(dot/(magnitude()*other.magnitude()));
+        return angle;
+    }
 }

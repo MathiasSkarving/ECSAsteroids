@@ -2,7 +2,6 @@ package dk.sdu.cbse.player;
 
 import dk.sdu.cbse.common.ecs.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class PlayerEntity extends Entity {

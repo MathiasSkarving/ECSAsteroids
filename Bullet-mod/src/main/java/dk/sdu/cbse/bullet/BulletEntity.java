@@ -22,7 +22,11 @@ public class BulletEntity extends Entity {
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
         circleColliderComponent.radius = Helpers.calculateColliderRadiusFromVertices(renderComponent.vertices);
 
-        addComponent(new RotationComponent());
         addComponent(new BulletComponent());
+        addComponent(new RotationComponent());
+
+        addComponent(new OutOfBoundsComponent());
+        OutOfBoundsComponent outOfBoundsComponent = getComponent(OutOfBoundsComponent.class);
+        outOfBoundsComponent.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.BOUNCE;
     }
 }

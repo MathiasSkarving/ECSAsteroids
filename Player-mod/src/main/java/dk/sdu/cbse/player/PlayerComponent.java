@@ -1,7 +1,10 @@
-package dk.sdu.cbse.common.ecs;
+package dk.sdu.cbse.player;
+
+import dk.sdu.cbse.common.ecs.Component;
+import dk.sdu.cbse.common.ecs.GameAction;
+import dk.sdu.cbse.common.ecs.GameKey;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class PlayerComponent extends Component {
     public int playerId;

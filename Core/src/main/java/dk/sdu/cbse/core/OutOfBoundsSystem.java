@@ -4,14 +4,13 @@ import dk.sdu.cbse.common.ecs.*;
 import dk.sdu.cbse.common.ecs.System;
 
 import java.util.HashSet;
-import java.util.List;
 
 public class OutOfBoundsSystem extends System {
     double outsideExtend;
 
     public OutOfBoundsSystem(World world) {
         this.world = world;
-        HashSet<Entity> entities = world.getEntitiesWith(PlayerComponent.class);
+        HashSet<Entity> entities = world.getEntitiesWith(CircleColliderComponent.class);
         double maxExtend = 0;
         for(Entity e : entities) {
             double entitySize;
@@ -57,6 +56,30 @@ public class OutOfBoundsSystem extends System {
                 }
                 if(pos.position.y < -outsideExtend) {
                     e.removeThis = true;
+                }
+            }
+            else if(e.getComponent(CircleColliderComponent.class) != null && e.getComponent(VelocityComponent.class) != null && outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.BOUNCE) {
+                PositionComponent pos = e.getComponent(PositionComponent.class);
+                CircleColliderComponent circleColliderComponent = e.getComponent(CircleColliderComponent.class);
+                VelocityComponent velocityComponent = e.getComponent(VelocityComponent.class);
+                double magnitude = velocityComponent.velocity.magnitude();
+
+                if(pos.position.x > world.worldWidth - circleColliderComponent.radius) {
+                    pos.position.x = world.worldWidth - circleColliderComponent.radius;
+                    velocityComponent.velocity.x = velocityComponent.velocity.x * -1;
+                }
+                if(pos.position.x < circleColliderComponent.radius) {
+                    pos.position.x = circleColliderComponent.radius;
+                    velocityComponent.velocity.x = velocityComponent.velocity.x * -1;
+                }
+                if(pos.position.y > world.worldHeight - circleColliderComponent.radius) {
+                    pos.position.y = world.worldHeight - circleColliderComponent.radius;
+                    velocityComponent.velocity.y = velocityComponent.velocity.y * -1;
+                }
+                if(pos.position.y < circleColliderComponent.radius) {
+                    pos.position.y = circleColliderComponent.radius;
+                    velocityComponent.velocity.y = velocityComponent.velocity.y * -1;
+
                 }
             }
         }

@@ -5,12 +5,12 @@ import dk.sdu.cbse.common.ecs.System;
 
 import java.util.HashSet;
 
-public class PlayerMovementSystem extends System implements Subscriber {
+public class PlayerInteractionSystem extends System implements Subscriber {
     double thrustForce = 2500;
     double dragForce = 0.5;
     HashSet<GameKey> keysPressed;
 
-    public PlayerMovementSystem() {
+    public PlayerInteractionSystem() {
         EventBus.getInstance().subscribe(this, KeyEvent.class);
         EventBus.getInstance().subscribe(this, CollisionEvent.class);
         keysPressed = new HashSet<>();
@@ -44,6 +44,9 @@ public class PlayerMovementSystem extends System implements Subscriber {
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 double angle = rotationComponent.angle + rotationComponent.angleOffset;
                 accelerationComponent.acceleration = new Vector2(Math.cos(Math.toRadians(angle)), Math.sin(Math.toRadians(angle))).scale(thrustForce);
+            }
+            if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Shoot))) {
+                EventBus.getInstance().notifySubscribers(new ShootingEvent(p));
             }
             if (!keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 accelerationComponent.acceleration = new Vector2(0,0);
