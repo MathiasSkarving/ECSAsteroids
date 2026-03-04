@@ -47,6 +47,11 @@
             <artifactId>Bullet-mod</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>dk.sdu.cbse.asteroid</groupId>
+            <artifactId>Asteroid-mod</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -1,18 +1,13 @@
 package dk.sdu.cbse.core;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Polygon;
 
 import java.util.HashSet;
-import java.util.List;
 
-public class RenderSystem extends System {
+public class RenderSystem extends BaseSystem {
     GraphicsContext gc;
 
     public RenderSystem(World world, GraphicsContext gc) {

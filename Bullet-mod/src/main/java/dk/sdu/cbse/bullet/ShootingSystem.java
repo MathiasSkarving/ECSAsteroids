@@ -1,12 +1,11 @@
 package dk.sdu.cbse.bullet;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
-import javafx.geometry.Pos;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.HashSet;
 
-public class ShootingSystem extends System implements Subscriber {
+public class ShootingSystem extends BaseSystem implements Subscriber {
 
     private double bulletSpeed = 500;
 
@@ -37,5 +36,14 @@ public class ShootingSystem extends System implements Subscriber {
 
     @Override
     public void update(float dt) {
+        HashSet<Entity> entities = new HashSet<>();
+        entities = world.getEntitiesWith(BulletComponent.class, TimerComponent.class);
+        double now = (double) java.lang.System.nanoTime() / 1000000;
+        for(Entity e : entities) {
+            TimerComponent timerComponent = e.getComponent(TimerComponent.class);
+            if(now - timerComponent.startTime > timerComponent.millisInterval) {
+                e.removeThis = true;
+            }
+        }
     }
 }

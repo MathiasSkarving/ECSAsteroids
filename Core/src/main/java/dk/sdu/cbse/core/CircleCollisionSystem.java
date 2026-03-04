@@ -1,12 +1,12 @@
 package dk.sdu.cbse.core;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CircleCollisionSystem extends System {
+public class CircleCollisionSystem extends BaseSystem {
     public CircleCollisionSystem(World world) {
         this.world = world;
     }

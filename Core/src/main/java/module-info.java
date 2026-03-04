@@ -3,6 +3,7 @@ module Core {
     requires javafx.controls;
     requires javafx.fxml;
     requires Common;
+    requires java.desktop;
 
     exports dk.sdu.cbse.core;
 }

@@ -16,6 +16,7 @@
         <module>Core</module>
         <module>Player-mod</module>
         <module>Bullet-mod</module>
+        <module>Asteroid-mod</module>
     </modules>
     <properties>
         <java>java</java>

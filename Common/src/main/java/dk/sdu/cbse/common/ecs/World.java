@@ -4,7 +4,7 @@ import java.util.*;
 
 public class World {
     Map<Class<? extends Component>, HashSet<Entity>> componentEntityMap = new HashMap<>();
-    List<System> systems = new ArrayList<>();
+    List<BaseSystem> baseSystems = new ArrayList<>();
     public int worldWidth;
     public int worldHeight;
     public double dragForce = 0.5;
@@ -39,9 +39,9 @@ public class World {
         componentEntityMap.get(component.getClass()).add(entity);
     }
 
-    public void addSystem(System system) {
-        system.setWorld(this);
-        systems.add(system);
+    public void addSystem(BaseSystem baseSystem) {
+        baseSystem.setWorld(this);
+        baseSystems.add(baseSystem);
     }
 
     @SafeVarargs
@@ -62,7 +62,7 @@ public class World {
     }
 
     public void update(float dt) {
-        for(System s : systems) {
+        for(BaseSystem s : baseSystems) {
             s.update(dt);
         }
     }

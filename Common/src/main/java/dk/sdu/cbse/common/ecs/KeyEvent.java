@@ -1,6 +1,6 @@
 package dk.sdu.cbse.common.ecs;
 
-public class KeyEvent implements EventType {
+public class KeyEvent extends EventType {
     private GameKey key;
     private boolean pressed;
 

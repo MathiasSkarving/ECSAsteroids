@@ -1,11 +1,11 @@
 package dk.sdu.cbse.core;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.HashSet;
 
-public class OutOfBoundsSystem extends System {
+public class OutOfBoundsSystem extends BaseSystem {
     double outsideExtend;
 
     public OutOfBoundsSystem(World world) {
@@ -62,7 +62,6 @@ public class OutOfBoundsSystem extends System {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
                 CircleColliderComponent circleColliderComponent = e.getComponent(CircleColliderComponent.class);
                 VelocityComponent velocityComponent = e.getComponent(VelocityComponent.class);
-                double magnitude = velocityComponent.velocity.magnitude();
 
                 if(pos.position.x > world.worldWidth - circleColliderComponent.radius) {
                     pos.position.x = world.worldWidth - circleColliderComponent.radius;
@@ -79,7 +78,6 @@ public class OutOfBoundsSystem extends System {
                 if(pos.position.y < circleColliderComponent.radius) {
                     pos.position.y = circleColliderComponent.radius;
                     velocityComponent.velocity.y = velocityComponent.velocity.y * -1;
-
                 }
             }
         }

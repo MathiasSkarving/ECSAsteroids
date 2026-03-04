@@ -1,11 +1,11 @@
 package dk.sdu.cbse.player;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.HashSet;
 
-public class PlayerInteractionSystem extends System implements Subscriber {
+public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
     double thrustForce = 2500;
     double dragForce = 0.5;
     HashSet<GameKey> keysPressed;

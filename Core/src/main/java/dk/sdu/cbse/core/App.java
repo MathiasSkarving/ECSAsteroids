@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
+import java.awt.*;
 
 /**
  * JavaFX App
@@ -20,11 +21,17 @@ public class App extends Application {
 
     private static Scene scene;
     private Game game;
+
     private int width = (int)(1920);
     private int height = (int)(1080);
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        width = (int)size.getWidth();
+        height = (int)size.getHeight();
+
         Group root = new Group();
         Scene gameScene = new Scene(root);
         stage.setScene(gameScene);
@@ -40,7 +47,7 @@ public class App extends Application {
         InputHandler handler = new InputHandler(gameScene);
 
         game.world.addSystem(new RenderSystem(game.world, gc));
-        game.world.addSystem(new PositionSystem(game.world));
+        game.world.addSystem(new MovingSystem(game.world));
         game.world.addSystem(new OutOfBoundsSystem(game.world));
         game.world.addSystem(new RemoveEntitySystem(game.world));
         game.world.addSystem(new CircleCollisionSystem(game.world));
@@ -50,6 +57,7 @@ public class App extends Application {
 
         for(IGamePlugin plugin : plugins){
             plugin.start(game.world);
+            System.out.println("starting plugin:" + plugin.getClass());
         }
 
         AnimationTimer gameLoop = new AnimationTimer() {

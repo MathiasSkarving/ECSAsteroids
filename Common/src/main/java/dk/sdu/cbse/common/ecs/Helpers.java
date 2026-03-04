@@ -1,5 +1,7 @@
 package dk.sdu.cbse.common.ecs;
 
+import java.util.Random;
+
 public class Helpers {
     public static void centerPoints(Vector2[] vertices) {
         double sumX = 0;
@@ -59,5 +61,15 @@ public class Helpers {
         }
 
         return vertices;
+    }
+
+    public static Vector2 getRandomVector() {
+        Random rand = new Random();
+        double randomAngle = rand.nextInt(360);
+        Vector2 randomVector = new Vector2(Math.cos(Math.toRadians(randomAngle)), Math.sin(Math.toRadians(randomAngle)));
+        double randomScale = 50+rand.nextInt(200);
+        randomVector = randomVector.scale(randomScale);
+
+        return randomVector;
     }
 }

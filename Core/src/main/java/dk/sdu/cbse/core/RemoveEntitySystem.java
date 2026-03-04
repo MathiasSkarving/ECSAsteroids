@@ -2,14 +2,12 @@ package dk.sdu.cbse.core;
 
 import dk.sdu.cbse.common.ecs.Entity;
 import dk.sdu.cbse.common.ecs.RenderComponent;
-import dk.sdu.cbse.common.ecs.System;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 import dk.sdu.cbse.common.ecs.World;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
-public class RemoveEntitySystem extends System {
+public class RemoveEntitySystem extends BaseSystem {
     HashSet<Entity> toRemove = new HashSet<>();
 
     public RemoveEntitySystem(World world) {

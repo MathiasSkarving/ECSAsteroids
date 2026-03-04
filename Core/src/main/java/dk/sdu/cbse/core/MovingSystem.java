@@ -1,14 +1,12 @@
 package dk.sdu.cbse.core;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
-import javafx.scene.canvas.GraphicsContext;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.HashSet;
-import java.util.List;
 
-public class PositionSystem extends System {
-    public PositionSystem(World world) {
+public class MovingSystem extends BaseSystem {
+    public MovingSystem(World world) {
         this.world = world;
     }
 

@@ -1,6 +1,6 @@
 package dk.sdu.cbse.common.ecs;
 
-public class CollisionEvent implements EventType {
+public class CollisionEvent extends EventType {
     public Entity entity1;
     public Entity entity2;
 

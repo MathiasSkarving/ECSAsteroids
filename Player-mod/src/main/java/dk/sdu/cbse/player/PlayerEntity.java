@@ -27,7 +27,7 @@ public class PlayerEntity extends Entity {
         Helpers.centerPoints(rendCom.vertices);
         rendCom.fillColor = hexColor;
         OutOfBoundsComponent outBound = getComponent(OutOfBoundsComponent.class);
-        outBound.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.WRAP;
+        outBound.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.BOUNCE;
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
         circleColliderComponent.radius = Helpers.calculateColliderRadiusFromVertices(rendCom.vertices);
     }

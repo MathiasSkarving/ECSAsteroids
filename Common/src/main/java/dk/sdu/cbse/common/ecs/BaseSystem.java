@@ -1,8 +1,6 @@
 package dk.sdu.cbse.common.ecs;
 
-import java.util.HashSet;
-
-public abstract class System {
+public abstract class BaseSystem {
     protected World world;
 
     public void update(float dt) {

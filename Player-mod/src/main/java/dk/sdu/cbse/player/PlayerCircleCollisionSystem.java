@@ -1,11 +1,11 @@
 package dk.sdu.cbse.player;
 
 import dk.sdu.cbse.common.ecs.*;
-import dk.sdu.cbse.common.ecs.System;
+import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.ArrayList;
 
-public class PlayerCircleCollisionSystem extends System implements Subscriber {
+public class PlayerCircleCollisionSystem extends BaseSystem implements Subscriber {
 
     public PlayerCircleCollisionSystem() {
         EventBus.getInstance().subscribe(this, CollisionEvent.class);

@@ -1,5 +1,5 @@
 package dk.sdu.cbse.common.ecs;
 
-public interface EventType {
+public abstract class EventType {
 
 }

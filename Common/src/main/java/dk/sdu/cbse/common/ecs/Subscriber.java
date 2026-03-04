@@ -1,6 +1,7 @@
 package dk.sdu.cbse.common.ecs;
 
-@FunctionalInterface
-public interface Subscriber {
-    public void onEvent(EventType event);
+import javafx.event.Event;
+
+public interface Subscriber<T extends EventType> {
+    public void onEvent(T event);
 }

@@ -7,12 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Player-mod" />
+        <module name="Asteroid-mod" />
         <module name="Core" />
         <module name="Common" />
         <module name="Bullet-mod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Asteroid" target="25" />
+      <module name="Asteroid.main" target="25" />
+      <module name="Asteroid.test" target="25" />
       <module name="untitled" target="25" />
     </bytecodeTargetLevel>
   </component>
