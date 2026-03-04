@@ -4,16 +4,18 @@ import java.util.Random;
 
 public class Helpers {
     public static void centerPoints(Vector2[] vertices) {
-        double sumX = 0;
-        double sumY = 0;
+        double minX = Double.MAX_VALUE, maxX = Double.MIN_VALUE;
+        double minY = Double.MAX_VALUE, maxY = Double.MIN_VALUE;
 
         for (Vector2 v : vertices) {
-            sumX += v.x;
-            sumY += v.y;
+            minX = Math.min(minX, v.x);
+            maxX = Math.max(maxX, v.x);
+            minY = Math.min(minY, v.y);
+            maxY = Math.max(maxY, v.y);
         }
 
-        double centerX = sumX / vertices.length;
-        double centerY = sumY / vertices.length;
+        double centerX = (minX + maxX) / 2;
+        double centerY = (minY + maxY) / 2;
 
         for (Vector2 v : vertices) {
             v.x -= centerX;

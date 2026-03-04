@@ -36,7 +36,7 @@ public class ShootingSystem extends BaseSystem implements Subscriber {
 
     @Override
     public void update(float dt) {
-        HashSet<Entity> entities = new HashSet<>();
+        HashSet<Entity> entities;
         entities = world.getEntitiesWith(BulletComponent.class, TimerComponent.class);
         double now = (double) java.lang.System.nanoTime() / 1000000;
         for(Entity e : entities) {
