@@ -13,7 +13,7 @@ public class AsteroidEntity extends Entity {
         addComponent(new RenderComponent());
         addComponent(new OutOfBoundsComponent());
         addComponent(new AsteroidComponent(splitsLeft, splitsInto, scale));
-        addComponent(new RotationalVelocityComponent(Helpers.getRandomNum(50,250)));
+        addComponent(new RotationalVelocityComponent(Helpers.getRandomNum(-200,200)));
 
         RenderComponent renderComponent = getComponent(RenderComponent.class);
         int numEdges = 4 + (int) (Math.random() * 10);

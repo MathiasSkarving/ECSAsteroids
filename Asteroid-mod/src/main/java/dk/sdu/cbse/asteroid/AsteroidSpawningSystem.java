@@ -22,7 +22,7 @@ public class AsteroidSpawningSystem extends BaseSystem {
 
         if(now-lastSpawn > spawnInterval) {
             System.out.println("Spawning");
-            world.addEntity(new AsteroidEntity(1,spawnX, spawnY, startVel, 3, 2));
+            world.addEntity(new AsteroidEntity(1,spawnX, spawnY, startVel, 2, 4));
             lastSpawn = now;
         }
     }

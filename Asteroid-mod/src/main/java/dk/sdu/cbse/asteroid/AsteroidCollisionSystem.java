@@ -19,6 +19,9 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
             VelocityComponent v2 = collisionEvent.entity2.getComponent(VelocityComponent.class);
             PositionComponent p1 = collisionEvent.entity1.getComponent(PositionComponent.class);
             PositionComponent p2 = collisionEvent.entity2.getComponent(PositionComponent.class);
+            RotationalVelocityComponent rv1 = collisionEvent.entity1.getComponent(RotationalVelocityComponent.class);
+            RotationalVelocityComponent rv2 = collisionEvent.entity2.getComponent(RotationalVelocityComponent.class);
+
             CircleColliderComponent c1 = collisionEvent.entity1.getComponent(CircleColliderComponent.class);
             CircleColliderComponent c2 = collisionEvent.entity2.getComponent(CircleColliderComponent.class);
 
@@ -35,6 +38,10 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
             Vector2 OldVel = v1.velocity;
             v1.velocity = v2.velocity;
             v2.velocity = OldVel;
+
+            double combined = rv1.rotationalVelocity + rv2.rotationalVelocity;
+            rv1.rotationalVelocity = combined/2;
+            rv2.rotationalVelocity = combined/2;
         }
 
         // If one of them is an asteroid
