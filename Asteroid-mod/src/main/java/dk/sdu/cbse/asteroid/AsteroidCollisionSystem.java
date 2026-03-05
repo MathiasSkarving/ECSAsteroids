@@ -3,6 +3,8 @@ package dk.sdu.cbse.asteroid;
 import dk.sdu.cbse.common.ecs.*;
 
 public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
+    public double decreasePerSplit = 0.5;
+
     public AsteroidCollisionSystem() {
         EventBus.getInstance().subscribe(this, CollisionEvent.class);
     }
@@ -39,7 +41,28 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
             if (collisionEvent.entity1.getComponent(AsteroidComponent.class) != null && collisionEvent.entity2.getComponent(AsteroidComponent.class) != null) {
                 return;
             } else {
+                AsteroidComponent asteroidComponent1Parent = collisionEvent.entity1.getComponent(AsteroidComponent.class);
+                PositionComponent positionComponent1Parent = collisionEvent.entity1.getComponent(PositionComponent.class);
+                if(asteroidComponent1Parent.splitsLeft == 0) {
+                    collisionEvent.entity1.removeThis = true;
+                }
+                for(int i = 0; i<asteroidComponent1Parent.splitsLeft; i++) {
+                    int numSplitsChild = asteroidComponent1Parent.splitsLeft--;
+                    AsteroidEntity entity = new AsteroidEntity(asteroidComponent1Parent.scale*decreasePerSplit, positionComponent1Parent.position.x, positionComponent1Parent.position.y, Helpers.getRandomVector(), numSplitsChild);
+                    world.addEntity(entity);
+                }
                 collisionEvent.entity1.removeThis = true;
+
+                AsteroidComponent asteroidComponent2Parent = collisionEvent.entity1.getComponent(AsteroidComponent.class);
+                PositionComponent positionComponent2Parent = collisionEvent.entity1.getComponent(PositionComponent.class);
+                if(asteroidComponent2Parent.splitsLeft == 0) {
+                    collisionEvent.entity2.removeThis = true;
+                }
+                for(int i = 0; i<asteroidComponent2Parent.splitsLeft; i++) {
+                    int numSplitsChild = asteroidComponent2Parent.splitsLeft--;
+                    AsteroidEntity entity = new AsteroidEntity(asteroidComponent2Parent.scale*decreasePerSplit, positionComponent2Parent.position.x, positionComponent2Parent.position.y, Helpers.getRandomVector(), numSplitsChild);
+                    world.addEntity(entity);
+                }
                 collisionEvent.entity2.removeThis = true;
             }
         }

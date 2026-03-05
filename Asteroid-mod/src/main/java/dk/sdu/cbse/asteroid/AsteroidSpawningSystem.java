@@ -7,7 +7,7 @@ import dk.sdu.cbse.common.ecs.Vector2;
 import java.util.Random;
 
 public class AsteroidSpawningSystem extends BaseSystem {
-    double spawnInterval = 2000;
+    double spawnInterval = 5000;
     double lastSpawn;
 
     @Override
@@ -22,7 +22,7 @@ public class AsteroidSpawningSystem extends BaseSystem {
 
         if(now-lastSpawn > spawnInterval) {
             System.out.println("Spawning");
-            world.addEntity(new AsteroidEntity(1,spawnX, spawnY, startVel));
+            world.addEntity(new AsteroidEntity(1,spawnX, spawnY, startVel, 4));
             lastSpawn = now;
         }
     }

@@ -74,4 +74,11 @@ public class Helpers {
 
         return randomVector;
     }
+
+    public static Vector2 getRandomVector(double worldWidth, double worldHeight) {
+        Random rand = new Random();
+        double randomX = rand.nextInt((int)worldWidth);
+        double randomY = rand.nextInt((int)worldHeight);
+        return new Vector2(randomX, randomY);
+    }
 }

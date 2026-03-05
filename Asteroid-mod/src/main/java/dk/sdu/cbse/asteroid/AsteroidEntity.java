@@ -5,14 +5,14 @@ import dk.sdu.cbse.common.ecs.*;
 import java.util.Random;
 
 public class AsteroidEntity extends Entity {
-    public AsteroidEntity(double scale, double spawnX, double spawnY, Vector2 startVelocity) {
+    public AsteroidEntity(double scale, double spawnX, double spawnY, Vector2 startVelocity, int splitsLeft) {
         addComponent(new CircleColliderComponent());
         addComponent(new RotationComponent());
         addComponent(new PositionComponent(new Vector2(spawnX, spawnY)));
         addComponent(new VelocityComponent(startVelocity));
         addComponent(new RenderComponent());
         addComponent(new OutOfBoundsComponent());
-        addComponent(new AsteroidComponent());
+        addComponent(new AsteroidComponent(splitsLeft, scale));
 
         RenderComponent renderComponent = getComponent(RenderComponent.class);
         int numEdges = 4 + (int) (Math.random() * 10);
