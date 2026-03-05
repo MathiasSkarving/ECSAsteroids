@@ -6,6 +6,8 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.HashSet;
 
 public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
+    double shootInterval = 1000;
+    double lastShot = 0;
     double thrustForce = 2500;
     double dragForce = 0.5;
     HashSet<GameKey> keysPressed;
@@ -46,7 +48,11 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
                 accelerationComponent.acceleration = new Vector2(Math.cos(Math.toRadians(angle)), Math.sin(Math.toRadians(angle))).scale(thrustForce);
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Shoot))) {
-                EventBus.getInstance().notifySubscribers(new ShootingEvent(p));
+                double now = System.nanoTime() / (double) 1000000;
+                if(now - lastShot > shootInterval) {
+                    EventBus.getInstance().notifySubscribers(new ShootingEvent(p));
+                    lastShot = now;
+                }
             }
             if (!keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 accelerationComponent.acceleration = new Vector2(0,0);

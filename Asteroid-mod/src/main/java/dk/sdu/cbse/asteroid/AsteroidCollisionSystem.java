@@ -11,11 +11,8 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
     public void onEvent(EventType event) {
         CollisionEvent collisionEvent = (CollisionEvent) event;
 
-        System.out.println("Entity1 asteroid: " + collisionEvent.entity1.getComponent(AsteroidComponent.class));
-        System.out.println("Entity2 asteroid: " + collisionEvent.entity2.getComponent(AsteroidComponent.class));
-
         // If they are both asteroids
-        if(collisionEvent.entity1.getComponent(AsteroidComponent.class) != null && collisionEvent.entity2.getComponent(AsteroidComponent.class) != null ) {
+        if (collisionEvent.entity1.getComponent(AsteroidComponent.class) != null && collisionEvent.entity2.getComponent(AsteroidComponent.class) != null) {
             VelocityComponent v1 = collisionEvent.entity1.getComponent(VelocityComponent.class);
             VelocityComponent v2 = collisionEvent.entity2.getComponent(VelocityComponent.class);
             PositionComponent p1 = collisionEvent.entity1.getComponent(PositionComponent.class);
@@ -27,15 +24,24 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
             Vector2 collisionNormal = p1.position.subtract(p2.position).normalize();
 
 
-            if(overlap < 0) {
-                p1.position = p1.position.subtract(collisionNormal.scale(overlap/2));
-                p2.position = p2.position.add(collisionNormal.scale(overlap/2));
+            if (overlap < 0) {
+                p1.position = p1.position.subtract(collisionNormal.scale(overlap / 2));
+                p2.position = p2.position.add(collisionNormal.scale(overlap / 2));
             }
 
             System.out.println("Changing VELOCITIES");
             Vector2 OldVel = v1.velocity;
             v1.velocity = v2.velocity;
             v2.velocity = OldVel;
+        }
+
+        if (collisionEvent.entity1.getComponent(AsteroidComponent.class) != null || collisionEvent.entity2.getComponent(AsteroidComponent.class) != null) {
+            if (collisionEvent.entity1.getComponent(AsteroidComponent.class) != null && collisionEvent.entity2.getComponent(AsteroidComponent.class) != null) {
+                return;
+            } else {
+                collisionEvent.entity1.removeThis = true;
+                collisionEvent.entity2.removeThis = true;
+            }
         }
     }
 

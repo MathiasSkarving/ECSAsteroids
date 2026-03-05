@@ -15,12 +15,12 @@ public class AsteroidEntity extends Entity {
         addComponent(new AsteroidComponent());
 
         RenderComponent renderComponent = getComponent(RenderComponent.class);
-        int numEdges = 3 + (int) (Math.random() * 10);
+        int numEdges = 4 + (int) (Math.random() * 10);
         double angleIncrement = (double) 360 / numEdges;
 
         renderComponent.vertices = new Vector2[numEdges];
         for (int i = 0; i < numEdges; i++) {
-            double range = scale * (40 + Math.random() * 15);
+            double range = scale * (30 + Math.random() * 50);
             renderComponent.vertices[i] = new Vector2(Math.cos(Math.toRadians(angleIncrement * i)), Math.sin(Math.toRadians(angleIncrement * i))).scale(range);
         }
 
