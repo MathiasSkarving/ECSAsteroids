@@ -9,7 +9,7 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
     double shootInterval = 1000;
     double lastShot = 0;
     double thrustForce = 2500;
-    double dragForce = 0.5;
+    double dragForce = 0.1;
     HashSet<GameKey> keysPressed;
 
     public PlayerInteractionSystem() {
@@ -36,12 +36,14 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             RotationComponent rotationComponent = p.getComponent(RotationComponent.class);
             AccelerationComponent accelerationComponent = p.getComponent(AccelerationComponent.class);
             PlayerComponent playerComponent = p.getComponent(PlayerComponent.class);
+            RotationalVelocityComponent rotationalVelocityComponent = p.getComponent(RotationalVelocityComponent.class);
+            RotationalAccelerationComponent rotationalAccelerationComponent = p.getComponent(RotationalAccelerationComponent.class);
 
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateLeft))) {
-                rotationComponent.angle = rotationComponent.angle - (270 * dt);
+                rotationalAccelerationComponent.rotationalAcceleration = -thrustForce/2;
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateRight))) {
-                rotationComponent.angle = rotationComponent.angle + (270 * dt);
+                rotationalAccelerationComponent.rotationalAcceleration = thrustForce/2;
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 double angle = rotationComponent.angle + rotationComponent.angleOffset;
@@ -57,9 +59,15 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             if (!keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 accelerationComponent.acceleration = new Vector2(0,0);
             }
+            if (!keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateLeft)) && !keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateRight))) {
+                rotationalAccelerationComponent.rotationalAcceleration = 0;
+            }
 
             velocityComponent.velocity = velocityComponent.velocity.scale(Math.pow(dragForce, dt));
             velocityComponent.velocity = velocityComponent.velocity.add(accelerationComponent.acceleration.scale(dt));
+
+            rotationalVelocityComponent.rotationalVelocity = rotationalVelocityComponent.rotationalVelocity * (Math.pow(0.5, dt));
+            rotationalVelocityComponent.rotationalVelocity += rotationalAccelerationComponent.rotationalAcceleration * dt;
         }
     }
 }

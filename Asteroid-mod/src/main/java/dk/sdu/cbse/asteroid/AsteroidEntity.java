@@ -13,6 +13,7 @@ public class AsteroidEntity extends Entity {
         addComponent(new RenderComponent());
         addComponent(new OutOfBoundsComponent());
         addComponent(new AsteroidComponent(splitsLeft, splitsInto, scale));
+        addComponent(new RotationalVelocityComponent(Helpers.getRandomNum(50,250)));
 
         RenderComponent renderComponent = getComponent(RenderComponent.class);
         int numEdges = 4 + (int) (Math.random() * 10);
@@ -24,7 +25,7 @@ public class AsteroidEntity extends Entity {
             renderComponent.vertices[i] = new Vector2(Math.cos(Math.toRadians(angleIncrement * i)), Math.sin(Math.toRadians(angleIncrement * i))).scale(range);
         }
 
-        renderComponent.fillColor = "000000";
+        renderComponent.fillColor = "333333";
 
         OutOfBoundsComponent outOfBoundsComponent = getComponent(OutOfBoundsComponent.class);
         outOfBoundsComponent.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.BOUNCE;

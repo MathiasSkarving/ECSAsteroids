@@ -6,12 +6,15 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
+
+import javax.swing.text.html.ImageView;
 import java.awt.*;
 
 /**
@@ -31,7 +34,6 @@ public class App extends Application {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         width = (int)size.getWidth();
         height = (int)size.getHeight();
-
         Group root = new Group();
         Scene gameScene = new Scene(root);
         stage.setScene(gameScene);
@@ -46,12 +48,12 @@ public class App extends Application {
 
         InputHandler handler = new InputHandler(gameScene);
 
-        game.world.addSystem(new RenderSystem(game.world, gc));
+        game.world.addSystem(new RenderSystem(game.world, gc, "/dk/sdu/cbse/bg.png"));
         game.world.addSystem(new MovingSystem(game.world));
         game.world.addSystem(new OutOfBoundsSystem(game.world));
         game.world.addSystem(new RemoveEntitySystem(game.world));
         game.world.addSystem(new CircleCollisionSystem(game.world));
-
+        game.world.addSystem(new RotationSystem(game.world));
 
         ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
 

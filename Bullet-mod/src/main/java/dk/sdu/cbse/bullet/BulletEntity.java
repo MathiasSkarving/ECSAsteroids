@@ -15,7 +15,7 @@ public class BulletEntity extends Entity {
         addComponent(new RenderComponent());
         RenderComponent renderComponent = getComponent(RenderComponent.class);
         renderComponent.vertices = Helpers.makeCircle(radius, 30);
-        renderComponent.fillColor = "000000";
+        renderComponent.fillColor = "EEEEEE";
         Helpers.centerPoints(renderComponent.vertices);
 
         addComponent(new CircleColliderComponent());

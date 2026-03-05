@@ -46,7 +46,7 @@ public class World {
 
     @SafeVarargs
     public final HashSet<Entity> getEntitiesWith(Class<? extends Component>... componentTypes) {
-        HashSet<Entity> result = componentEntityMap.getOrDefault(componentTypes[0], new HashSet<>());
+        HashSet<Entity> result = new HashSet<>(componentEntityMap.getOrDefault(componentTypes[0], new HashSet<>()));
         for (int i = 1; i < componentTypes.length; i++) {
             result.retainAll(componentEntityMap.getOrDefault(componentTypes[i], new HashSet<>()));
         }

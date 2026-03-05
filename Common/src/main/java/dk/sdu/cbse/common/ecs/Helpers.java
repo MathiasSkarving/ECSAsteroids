@@ -81,4 +81,11 @@ public class Helpers {
         double randomY = rand.nextInt((int)worldHeight);
         return new Vector2(randomX, randomY);
     }
+
+    public static double getRandomNum(double origin, double bound) {
+        double num;
+        Random rand = new Random();
+        num = origin+rand.nextDouble()*(bound-origin);
+        return num;
+    }
 }
