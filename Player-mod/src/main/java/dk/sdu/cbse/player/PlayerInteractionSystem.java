@@ -14,7 +14,6 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
 
     public PlayerInteractionSystem() {
         EventBus.getInstance().subscribe(this, KeyEvent.class);
-        EventBus.getInstance().subscribe(this, CollisionEvent.class);
         keysPressed = new HashSet<>();
     }
 

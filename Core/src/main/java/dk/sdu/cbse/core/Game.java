@@ -10,6 +10,4 @@ public class Game {
     public Game(int width, int height, GraphicsContext gc) {
         world = new World(width, height);
     }
-
-
 }

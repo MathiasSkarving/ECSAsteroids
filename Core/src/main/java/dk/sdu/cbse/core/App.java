@@ -54,6 +54,7 @@ public class App extends Application {
         game.world.addSystem(new RemoveEntitySystem(game.world));
         game.world.addSystem(new CircleCollisionSystem(game.world));
         game.world.addSystem(new RotationSystem(game.world));
+        game.world.addSystem(new SoundSystem(game.world));
 
         ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
 

@@ -4,6 +4,7 @@ module Core {
     requires javafx.fxml;
     requires Common;
     requires java.desktop;
+    requires javafx.media;
 
     exports dk.sdu.cbse.core;
 }
