@@ -29,7 +29,7 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
 
     @Override
     public void update(float dt) {
-        HashSet<Entity> players = world.getEntitiesWith(PlayerComponent.class, RotationComponent.class, VelocityComponent.class, PositionComponent.class, RenderComponent.class);
+        HashSet<Entity> players = world.getEntitiesWith(dk.sdu.cbse.common.ecs.PlayerComponent.class, RotationComponent.class, VelocityComponent.class, PositionComponent.class, RenderComponent.class);
         for (Entity p : players) {
             VelocityComponent velocityComponent = p.getComponent(VelocityComponent.class);
             RotationComponent rotationComponent = p.getComponent(RotationComponent.class);

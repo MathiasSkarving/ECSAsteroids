@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Player-mod" />
+        <module name="Score-mod" />
         <module name="Asteroid-mod" />
         <module name="Core" />
         <module name="Common" />

@@ -1,8 +1,4 @@
-package dk.sdu.cbse.player;
-
-import dk.sdu.cbse.common.ecs.Component;
-import dk.sdu.cbse.common.ecs.GameAction;
-import dk.sdu.cbse.common.ecs.GameKey;
+package dk.sdu.cbse.common.ecs;
 
 import java.util.HashMap;
 

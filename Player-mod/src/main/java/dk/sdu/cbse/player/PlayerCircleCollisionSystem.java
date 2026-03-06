@@ -16,7 +16,7 @@ public class PlayerCircleCollisionSystem extends BaseSystem implements Subscribe
         Entity collisionEntity1 = ((CollisionEvent)event).entity1;
         Entity collisionEntity2 = ((CollisionEvent)event).entity2;
 
-        ArrayList<Entity> worldPlayers = new ArrayList<>(world.getEntitiesWith(PlayerComponent.class, PositionComponent.class, CircleColliderComponent.class));
+        ArrayList<Entity> worldPlayers = new ArrayList<>(world.getEntitiesWith(dk.sdu.cbse.common.ecs.PlayerComponent.class, PositionComponent.class, CircleColliderComponent.class));
         if(worldPlayers.contains(collisionEntity1) && worldPlayers.contains(collisionEntity2)) {
             VelocityComponent v1 = collisionEntity1.getComponent(VelocityComponent.class);
             VelocityComponent v2 = collisionEntity2.getComponent(VelocityComponent.class);
