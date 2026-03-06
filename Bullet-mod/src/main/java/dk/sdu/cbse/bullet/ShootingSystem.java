@@ -30,7 +30,7 @@ public class ShootingSystem extends BaseSystem implements Subscriber {
             positionComponent = source.getComponent(PositionComponent.class);
             Vector2 bulletVelocity = new Vector2(rotationComponent.angle + rotationComponent.angleOffset);
             bulletVelocity = bulletVelocity.scale(bulletSpeed);
-            world.addEntity(new BulletEntity(5, bulletVelocity, positionComponent.position));
+            world.addEntity(new BulletEntity(5, bulletVelocity, positionComponent.position, source));
         }
     }
 

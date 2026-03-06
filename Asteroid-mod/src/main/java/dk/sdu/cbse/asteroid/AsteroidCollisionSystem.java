@@ -59,6 +59,8 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
                     if (asteroidComponentParent.splitsLeft < 1) {
                         collisionEvent.entity1.removeThis = true;
                         collisionEvent.entity2.removeThis = true;
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity2));
+
                     } else {
                         int newSplitsLeft = asteroidComponentParent.splitsLeft - 1;
                         int newSplitsInto = asteroidComponentParent.splitsInto;
@@ -70,6 +72,8 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
 
                         collisionEvent.entity1.removeThis = true;
                         collisionEvent.entity2.removeThis = true;
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity2));
+
                     }
 
                 } else if (collisionEvent.entity2.getComponent(AsteroidComponent.class) != null) {
@@ -78,6 +82,8 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
                     if (asteroidComponentParent.splitsLeft == 0) {
                         collisionEvent.entity2.removeThis = true;
                         collisionEvent.entity1.removeThis = true;
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity1));
+
                     } else {
                         int newSplitsLeft = asteroidComponentParent.splitsLeft - 1;
                         int newSplitsInto = asteroidComponentParent.splitsInto;
@@ -88,6 +94,7 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
 
                         collisionEvent.entity1.removeThis = true;
                         collisionEvent.entity2.removeThis = true;
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity1));
                     }
                 }
             }
@@ -97,5 +104,9 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
     @Override
     public void update(float dt) {
 
+    }
+
+    public void NotifyDestruction(AsteroidDestructionEvent asteroidDestructionEvent) {
+        EventBus.getInstance().notifySubscribers(asteroidDestructionEvent);
     }
 }

@@ -24,6 +24,8 @@ public class AsteroidEntity extends Entity {
             double range = scale * (30 + Math.random() * 50);
             renderComponent.vertices[i] = new Vector2(Math.cos(Math.toRadians(angleIncrement * i)), Math.sin(Math.toRadians(angleIncrement * i))).scale(range);
         }
+        Helpers.centerPoints(renderComponent.vertices);
+
 
         renderComponent.fillColor = "333333";
 

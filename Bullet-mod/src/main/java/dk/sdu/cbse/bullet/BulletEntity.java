@@ -3,7 +3,7 @@ package dk.sdu.cbse.bullet;
 import dk.sdu.cbse.common.ecs.*;
 
 public class BulletEntity extends Entity {
-    public BulletEntity(double radius, Vector2 startVelocity, Vector2 startPosition) {
+    public BulletEntity(double radius, Vector2 startVelocity, Vector2 startPosition, Entity source) {
         addComponent(new VelocityComponent(new Vector2(0,0)));
         VelocityComponent velocityComponent = getComponent(VelocityComponent.class);
         velocityComponent.velocity = startVelocity;
@@ -30,5 +30,7 @@ public class BulletEntity extends Entity {
         outOfBoundsComponent.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.BOUNCE;
 
         addComponent(new TimerComponent(3000));
+
+        addComponent(new OwnedByComponent(source));
     }
 }
