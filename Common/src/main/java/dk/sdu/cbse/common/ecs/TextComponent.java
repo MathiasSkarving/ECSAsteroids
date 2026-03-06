@@ -1,0 +1,14 @@
+package dk.sdu.cbse.common.ecs;
+
+public class TextComponent extends Component {
+    public String text;
+    public String font = "Arial";
+    public double fontSize = 14;
+    public String color = "#FFFFFF";
+    public double offsetX = 0;
+    public double offsetY = 0;
+
+    public TextComponent(String text) {
+        this.text = text;
+    }
+}

@@ -36,5 +36,16 @@ public class RenderSystem extends BaseSystem {
             gc.fillPolygon(Helpers.calculateXpointsFromVectors(rc.vertices), Helpers.calculateYpointsFromVectors(rc.vertices), rc.vertices.length);
             gc.restore();
         }
+
+        HashSet<Entity> textToRender = world.getEntitiesWith(TextComponent.class, PositionComponent.class);
+        for(Entity e : textToRender) {
+            TextComponent     tc  = e.getComponent(TextComponent.class);
+            PositionComponent pos = e.getComponent(PositionComponent.class);
+            gc.save();
+            gc.setFont(javafx.scene.text.Font.font(tc.font, tc.fontSize));
+            gc.setFill(Color.web(tc.color));
+            gc.fillText(tc.text, pos.position.x + tc.offsetX, pos.position.y + tc.offsetY);
+            gc.restore();
+        }
     }
 }
