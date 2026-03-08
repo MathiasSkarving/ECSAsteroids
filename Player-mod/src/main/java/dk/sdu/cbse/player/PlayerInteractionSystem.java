@@ -39,10 +39,10 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             RotationalAccelerationComponent rotationalAccelerationComponent = p.getComponent(RotationalAccelerationComponent.class);
 
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateLeft))) {
-                rotationalAccelerationComponent.rotationalAcceleration = -thrustForce * 0.8;
+                rotationalAccelerationComponent.rotationalAcceleration = -thrustForce * 1;
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateRight))) {
-                rotationalAccelerationComponent.rotationalAcceleration = thrustForce * 0.8; // Side thrusters are 80% the size of the main thruster
+                rotationalAccelerationComponent.rotationalAcceleration = thrustForce * 1;
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 double angle = rotationComponent.angle + rotationComponent.angleOffset;
@@ -65,7 +65,7 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             velocityComponent.velocity = velocityComponent.velocity.scale(Math.pow(dragForce, dt));
             velocityComponent.velocity = velocityComponent.velocity.add(accelerationComponent.acceleration.scale(dt));
 
-            rotationalVelocityComponent.rotationalVelocity = rotationalVelocityComponent.rotationalVelocity * (Math.pow(0.05, dt)); // The rocket automatically tries to counter steer a little bit to stabilize velocity
+            rotationalVelocityComponent.rotationalVelocity = rotationalVelocityComponent.rotationalVelocity * (Math.pow(0.01, dt)); // The rocket automatically tries to counter steer a little bit to stabilize velocity
             rotationalVelocityComponent.rotationalVelocity += rotationalAccelerationComponent.rotationalAcceleration * dt;
         }
     }

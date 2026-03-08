@@ -57,7 +57,7 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
                     if (asteroidComponentParent.splitsLeft < 1) {
                         collisionEvent.entity1.removeThis = true;
                         collisionEvent.entity2.removeThis = true;
-                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity2));
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity2, asteroidComponentParent.scale));
 
                     } else {
                         int newSplitsLeft = asteroidComponentParent.splitsLeft - 1;
@@ -70,7 +70,7 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
 
                         collisionEvent.entity1.removeThis = true;
                         collisionEvent.entity2.removeThis = true;
-                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity2));
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity2, asteroidComponentParent.scale));
 
                     }
 
@@ -80,7 +80,7 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
                     if (asteroidComponentParent.splitsLeft == 0) {
                         collisionEvent.entity2.removeThis = true;
                         collisionEvent.entity1.removeThis = true;
-                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity1));
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity1, asteroidComponentParent.scale));
 
                     } else {
                         int newSplitsLeft = asteroidComponentParent.splitsLeft - 1;
@@ -92,7 +92,7 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
 
                         collisionEvent.entity1.removeThis = true;
                         collisionEvent.entity2.removeThis = true;
-                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity1));
+                        NotifyDestruction(new AsteroidDestructionEvent(collisionEvent.entity1, asteroidComponentParent.scale));
                     }
                 }
             }

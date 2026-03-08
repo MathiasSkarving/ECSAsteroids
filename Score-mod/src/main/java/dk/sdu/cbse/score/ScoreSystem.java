@@ -28,10 +28,10 @@ public class ScoreSystem extends BaseSystem implements Subscriber {
                 ScoreComponent score = e.getComponent(ScoreComponent.class);
                 PlayerComponent playerComponent = playerResponsibleComponent.e.getComponent(PlayerComponent.class);
                 if(score.scoreForPlayerId == playerComponent.playerId) {
-                    score.score += 100;
+                    score.score += 100 * (1/asteroidDestructionEvent.asteroidSize);
                     TextComponent textComponent = e.getComponent(TextComponent.class);
                     if(textComponent != null) {
-                        textComponent.text = "Player " + playerComponent.playerId + ": " + score.score;
+                        textComponent.text = "Player " + playerComponent.playerId + ": " + String.format("%.0f", score.score);
                     }
                 }
             }
