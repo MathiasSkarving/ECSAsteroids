@@ -5,13 +5,35 @@ import java.util.*;
 public class World {
     Map<Class<? extends Component>, HashSet<Entity>> componentEntityMap = new HashMap<>();
     List<BaseSystem> baseSystems = new ArrayList<>();
-    public int worldWidth;
-    public int worldHeight;
-    public double dragForce = 0.5;
+    private int worldWidth;
+    private int worldHeight;
 
-    public World(int width, int height) {
-        worldHeight = height;
-        worldWidth = width;
+    private static World instance;
+
+    private World() {
+    }
+
+    public static World getInstance() {
+        if(instance == null) {
+            instance = new World();
+        }
+        return instance;
+    }
+
+    public void setWorldWidth(int width) {
+        this.worldWidth = width;
+    }
+
+    public void setWorldHeight(int height) {
+        this.worldHeight = height;
+    }
+
+    public int getWorldWidth() {
+        return worldWidth;
+    }
+
+    public int getWorldHeight() {
+        return worldHeight;
     }
 
     public void addEntity(Entity entity) {
@@ -29,14 +51,6 @@ public class World {
                 list.remove(entity);
             }
         }
-    }
-
-    public void addComponent(Entity entity, Component component) {
-        entity.addComponent(component);
-        if (!componentEntityMap.containsKey(component.getClass())) {
-            componentEntityMap.put(component.getClass(), new HashSet<>());
-        }
-        componentEntityMap.get(component.getClass()).add(entity);
     }
 
     public void addSystem(BaseSystem baseSystem) {

@@ -16,7 +16,9 @@ public class CircleCollisionSystem extends BaseSystem {
         List<Entity> entityList = new ArrayList<>(world.getEntitiesWith(PositionComponent.class, CircleColliderComponent.class));
 
         for (int i = 0; i < entityList.size(); i++) {
+            if (entityList.get(i).removeThis) continue;
             for (int j = i + 1; j < entityList.size(); j++) {
+                if (entityList.get(j).removeThis) continue;
                 PositionComponent positionComponent1 = entityList.get(i).getComponent(PositionComponent.class);
                 CircleColliderComponent circleColliderComponent1 = entityList.get(i).getComponent(CircleColliderComponent.class);
                 PositionComponent positionComponent2 = entityList.get(j).getComponent(PositionComponent.class);

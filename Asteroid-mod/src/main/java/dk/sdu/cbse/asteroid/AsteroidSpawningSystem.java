@@ -15,8 +15,8 @@ public class AsteroidSpawningSystem extends BaseSystem {
         double now = (double) System.nanoTime() / 1000000;
 
         Random rand = new Random();
-        double spawnX = rand.nextDouble(world.worldWidth);
-        double spawnY = rand.nextDouble(world.worldHeight);
+        double spawnX = rand.nextDouble(world.getWorldWidth());
+        double spawnY = rand.nextDouble(world.getWorldHeight());
 
         Vector2 startVel = Helpers.getRandomVector();
 

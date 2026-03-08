@@ -8,7 +8,9 @@ public class TextComponent extends Component {
     public double offsetX = 0;
     public double offsetY = 0;
 
-    public TextComponent(String text) {
+    public TextComponent(String text, String color, double fontSize) {
         this.text = text;
+        this.color = color;
+        this.fontSize = fontSize;
     }
 }

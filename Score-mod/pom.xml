@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>Score-mod</artifactId>
+    <groupId>dk.sdu.cbse.score</groupId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>

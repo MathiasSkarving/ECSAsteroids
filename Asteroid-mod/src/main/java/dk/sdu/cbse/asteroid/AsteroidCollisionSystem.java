@@ -3,7 +3,7 @@ package dk.sdu.cbse.asteroid;
 import dk.sdu.cbse.common.ecs.*;
 
 public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
-    public double decreasePerSplit = 0.75;
+    public double decreasePerSplit = 0.65;
 
     public AsteroidCollisionSystem() {
         EventBus.getInstance().subscribe(this, CollisionEvent.class);
@@ -34,7 +34,6 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
                 p2.position = p2.position.add(collisionNormal.scale(overlap / 2));
             }
 
-            System.out.println("Changing VELOCITIES");
             Vector2 OldVel = v1.velocity;
             v1.velocity = v2.velocity;
             v2.velocity = OldVel;
@@ -53,7 +52,6 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
             // XOR operation
             else {
                 if (collisionEvent.entity1.getComponent(AsteroidComponent.class) != null) {
-                    System.out.println("HIT");
                     AsteroidComponent asteroidComponentParent = collisionEvent.entity1.getComponent(AsteroidComponent.class);
                     PositionComponent positionComponentParent = collisionEvent.entity1.getComponent(PositionComponent.class);
                     if (asteroidComponentParent.splitsLeft < 1) {

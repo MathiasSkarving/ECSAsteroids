@@ -30,28 +30,28 @@ public class OutOfBoundsSystem extends BaseSystem {
             OutOfBoundsComponent outOfBoundsComponent = e.getComponent(OutOfBoundsComponent.class);
             if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.WRAP) {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
-                if(pos.position.x > world.worldWidth + outsideExtend) {
+                if(pos.position.x > world.getWorldWidth() + outsideExtend) {
                     pos.position.x = -outsideExtend;
                 }
                 if(pos.position.x < -outsideExtend) {
-                    pos.position.x = world.worldWidth + outsideExtend;
+                    pos.position.x = world.getWorldWidth() + outsideExtend;
                 }
-                if(pos.position.y > world.worldHeight + outsideExtend) {
+                if(pos.position.y > world.getWorldHeight() + outsideExtend) {
                     pos.position.y = -outsideExtend;
                 }
                 if(pos.position.y < -outsideExtend) {
-                    pos.position.y = world.worldHeight + outsideExtend;
+                    pos.position.y = world.getWorldHeight() + outsideExtend;
                 }
             }
             else if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.REMOVE) {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
-                if(pos.position.x > world.worldWidth + outsideExtend) {
+                if(pos.position.x > world.getWorldWidth() + outsideExtend) {
                     e.removeThis = true;
                 }
                 if(pos.position.x < -outsideExtend) {
                     e.removeThis = true;
                 }
-                if(pos.position.y > world.worldHeight + outsideExtend) {
+                if(pos.position.y > world.getWorldHeight() + outsideExtend) {
                     e.removeThis = true;
                 }
                 if(pos.position.y < -outsideExtend) {
@@ -63,16 +63,16 @@ public class OutOfBoundsSystem extends BaseSystem {
                 CircleColliderComponent circleColliderComponent = e.getComponent(CircleColliderComponent.class);
                 VelocityComponent velocityComponent = e.getComponent(VelocityComponent.class);
 
-                if(pos.position.x > world.worldWidth - circleColliderComponent.radius) {
-                    pos.position.x = world.worldWidth - circleColliderComponent.radius;
+                if(pos.position.x > world.getWorldWidth() - circleColliderComponent.radius) {
+                    pos.position.x = world.getWorldWidth() - circleColliderComponent.radius;
                     velocityComponent.velocity.x = velocityComponent.velocity.x * -1;
                 }
                 if(pos.position.x < circleColliderComponent.radius) {
                     pos.position.x = circleColliderComponent.radius;
                     velocityComponent.velocity.x = velocityComponent.velocity.x * -1;
                 }
-                if(pos.position.y > world.worldHeight - circleColliderComponent.radius) {
-                    pos.position.y = world.worldHeight - circleColliderComponent.radius;
+                if(pos.position.y > world.getWorldHeight() - circleColliderComponent.radius) {
+                    pos.position.y = world.getWorldHeight() - circleColliderComponent.radius;
                     velocityComponent.velocity.y = velocityComponent.velocity.y * -1;
                 }
                 if(pos.position.y < circleColliderComponent.radius) {

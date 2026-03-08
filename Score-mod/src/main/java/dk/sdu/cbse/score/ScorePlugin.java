@@ -1,9 +1,6 @@
 package dk.sdu.cbse.score;
 
-import dk.sdu.cbse.common.ecs.Entity;
-import dk.sdu.cbse.common.ecs.IGamePlugin;
-import dk.sdu.cbse.common.ecs.PlayerComponent;
-import dk.sdu.cbse.common.ecs.World;
+import dk.sdu.cbse.common.ecs.*;
 
 import java.util.HashSet;
 
@@ -12,10 +9,19 @@ public class ScorePlugin implements IGamePlugin {
     public void start(World world) {
         HashSet<Entity> playerEntities = world.getEntitiesWith(PlayerComponent.class);
         for(int i = 0; i<playerEntities.size(); i++) {
+            System.out.println(playerEntities.getClass());
             Entity p = playerEntities.stream().toList().get(i);
-            if(p.getComponent())
-            world.addEntity(new ScoreEntity());
+            if(p.getComponent(PlayerComponent.class) != null) {
+                PlayerComponent playerComponent = p.getComponent(PlayerComponent.class);
+                if(playerComponent.playerId == 1) {
+                    world.addEntity(new ScoreEntity(playerComponent.playerId, new Vector2(50,50)));
+                } else if(playerComponent.playerId == 2) {
+                    world.addEntity(new ScoreEntity(playerComponent.playerId, new Vector2(world.getWorldWidth()-400,50)));
+                }
+            }
         }
+
+        world.addSystem(new ScoreSystem());
     }
 
     @Override

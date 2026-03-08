@@ -6,10 +6,10 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.HashSet;
 
 public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
-    double shootInterval = 250;
+    double shootInterval = 750;
     double lastShot = 0;
     double thrustForce = 2500;
-    double dragForce = 0.1;
+    double dragForce = 0.2;
     HashSet<GameKey> keysPressed;
 
     public PlayerInteractionSystem() {
@@ -29,7 +29,7 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
 
     @Override
     public void update(float dt) {
-        HashSet<Entity> players = world.getEntitiesWith(dk.sdu.cbse.common.ecs.PlayerComponent.class, RotationComponent.class, VelocityComponent.class, PositionComponent.class, RenderComponent.class);
+        HashSet<Entity> players = world.getEntitiesWith(PlayerComponent.class, RotationComponent.class, VelocityComponent.class, PositionComponent.class, RenderComponent.class);
         for (Entity p : players) {
             VelocityComponent velocityComponent = p.getComponent(VelocityComponent.class);
             RotationComponent rotationComponent = p.getComponent(RotationComponent.class);
@@ -39,10 +39,10 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             RotationalAccelerationComponent rotationalAccelerationComponent = p.getComponent(RotationalAccelerationComponent.class);
 
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateLeft))) {
-                rotationalAccelerationComponent.rotationalAcceleration = -thrustForce * 0.6;
+                rotationalAccelerationComponent.rotationalAcceleration = -thrustForce * 0.8;
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.RotateRight))) {
-                rotationalAccelerationComponent.rotationalAcceleration = thrustForce * 0.6; // Side thrusters are 60% the size of the main thruster
+                rotationalAccelerationComponent.rotationalAcceleration = thrustForce * 0.8; // Side thrusters are 80% the size of the main thruster
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
                 double angle = rotationComponent.angle + rotationComponent.angleOffset;
@@ -65,7 +65,7 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             velocityComponent.velocity = velocityComponent.velocity.scale(Math.pow(dragForce, dt));
             velocityComponent.velocity = velocityComponent.velocity.add(accelerationComponent.acceleration.scale(dt));
 
-            rotationalVelocityComponent.rotationalVelocity = rotationalVelocityComponent.rotationalVelocity * (Math.pow(0.1, dt)); // The rocket automatically tries to counter steer a little bit to stabilize velocity
+            rotationalVelocityComponent.rotationalVelocity = rotationalVelocityComponent.rotationalVelocity * (Math.pow(0.05, dt)); // The rocket automatically tries to counter steer a little bit to stabilize velocity
             rotationalVelocityComponent.rotationalVelocity += rotationalAccelerationComponent.rotationalAcceleration * dt;
         }
     }
