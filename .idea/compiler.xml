@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Player-mod" />
         <module name="Score-mod" />
+        <module name="Enemy-mod" />
+        <module name="Player-mod" />
         <module name="Asteroid-mod" />
+        <module name="Common-Enemy-mod" />
         <module name="Core" />
         <module name="Common" />
         <module name="Bullet-mod" />

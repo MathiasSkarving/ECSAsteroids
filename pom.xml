@@ -18,6 +18,8 @@
         <module>Bullet-mod</module>
         <module>Asteroid-mod</module>
         <module>Score-mod</module>
+        <module>Enemy-mod</module>
+        <module>Common-Enemy-mod</module>
     </modules>
     <properties>
         <java>java</java>
