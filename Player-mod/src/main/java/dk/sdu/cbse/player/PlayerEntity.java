@@ -5,6 +5,8 @@ import dk.sdu.cbse.common.ecs.*;
 import java.util.HashMap;
 
 public class PlayerEntity extends Entity {
+    public double lastShot = 0;
+
     public PlayerEntity(String hexColor, int id, HashMap<GameAction, GameKey> gameActionGameKeyHashMap, double spawnX, double spawnY, double angleOffset) {
         addComponent(new VelocityComponent(new Vector2(0,0)));
         addComponent(new PositionComponent(new Vector2(spawnX, spawnY)));

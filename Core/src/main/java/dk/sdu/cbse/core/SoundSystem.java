@@ -8,7 +8,7 @@ import java.util.Objects;
 
 
 public class SoundSystem extends BaseSystem implements Subscriber {
-    private final Media shootingMedia = new Media(Objects.requireNonNull(getClass().getResource("/dk/sdu/cbse/Shit.wav")).toExternalForm());
+    private final Media shootingMedia = new Media(Objects.requireNonNull(getClass().getResource("/dk/sdu/cbse/Pew.wav")).toExternalForm());
 
     public SoundSystem(World world) {
         EventBus.getInstance().subscribe(this, ShootingEvent.class);

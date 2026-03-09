@@ -7,7 +7,6 @@ import java.util.HashSet;
 
 public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
     double shootInterval = 750;
-    double lastShot = 0;
     double thrustForce = 2500;
     double dragForce = 0.2;
     HashSet<GameKey> keysPressed;
@@ -50,9 +49,10 @@ public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
             }
             if (keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Shoot))) {
                 double now = System.nanoTime() / (double) 1000000;
-                if(now - lastShot > shootInterval) {
+                PlayerEntity player = (PlayerEntity)p;
+                if(now - player.lastShot > shootInterval) {
                     EventBus.getInstance().notifySubscribers(new ShootingEvent(p));
-                    lastShot = now;
+                    player.lastShot = now;
                 }
             }
             if (!keysPressed.contains(playerComponent.gameActionGameKeyHashMap.get(GameAction.Accelerate))) {
