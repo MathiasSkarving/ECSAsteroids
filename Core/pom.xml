@@ -6,8 +6,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
     </properties>
 
     <parent>
@@ -25,12 +25,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
+            <version>21.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -38,29 +33,20 @@
             <version>21.0.2</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>dk.sdu.cbse.common.ecs</groupId>
             <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.player</groupId>
-            <artifactId>Player-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.bullet</groupId>
-            <artifactId>Bullet-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.asteroid</groupId>
-            <artifactId>Asteroid-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.score</groupId>
-            <artifactId>Score-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>

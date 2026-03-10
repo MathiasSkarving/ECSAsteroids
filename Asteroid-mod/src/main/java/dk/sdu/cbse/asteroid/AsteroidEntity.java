@@ -34,5 +34,6 @@ public class AsteroidEntity extends Entity {
 
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
         circleColliderComponent.radius = Helpers.calculateColliderRadiusFromVertices(renderComponent.vertices);
+        circleColliderComponent.radius *= 0.75;
     }
 }
