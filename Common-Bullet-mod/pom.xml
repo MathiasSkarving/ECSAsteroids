@@ -3,42 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>dk.sdu.cbse</groupId>
         <artifactId>asteroidsfx</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Player-mod</artifactId>
-    <groupId>dk.sdu.cbse.player</groupId>
-    <packaging>jar</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>dk.sdu.cbse.common.ecs</groupId>
-            <artifactId>Common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.commonenemy</groupId>
-            <artifactId>Common-Enemy-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse.commonbullet</groupId>
-            <artifactId>Common-Bullet-mod</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <groupId>dk.sdu.cbse.commonbullet</groupId>
+    <artifactId>Common-Bullet-mod</artifactId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>dk.sdu.cbse.common.ecs</groupId>
+            <artifactId>Common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -58,6 +44,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>25</source>
+                    <target>25</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

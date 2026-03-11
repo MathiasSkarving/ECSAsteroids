@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CircleCollisionSystem extends BaseSystem {
-    public CircleCollisionSystem(World world) {
-        this.world = world;
+    public CircleCollisionSystem() {
     }
 
     @Override

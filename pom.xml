@@ -20,6 +20,7 @@
         <module>Score-mod</module>
         <module>Enemy-mod</module>
         <module>Common-Enemy-mod</module>
+        <module>Common-Bullet-mod</module>
     </modules>
     <properties>
         <java>java</java>

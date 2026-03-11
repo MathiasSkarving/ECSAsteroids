@@ -80,4 +80,13 @@ public class World {
             s.update(dt);
         }
     }
+
+    public void reset() {
+        int oldWidth = worldWidth;
+        int oldHeight = worldHeight;
+        instance = new World();
+        instance.setWorldWidth(oldWidth);
+        instance.setWorldHeight(oldHeight);
+        EventBus.getInstance().reset();
+    }
 }

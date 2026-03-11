@@ -1,6 +1,7 @@
 package dk.sdu.cbse.bullet;
 
 import dk.sdu.cbse.common.ecs.*;
+import dk.sdu.cbse.commonbullet.BulletComponent;
 
 public class BulletEntity extends Entity {
     public BulletEntity(double radius, Vector2 startVelocity, Vector2 startPosition, Entity source) {
@@ -22,13 +23,11 @@ public class BulletEntity extends Entity {
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
         circleColliderComponent.radius = Helpers.calculateColliderRadiusFromVertices(renderComponent.vertices);
 
-        addComponent(new BulletComponent());
+        addComponent(new BulletComponent(source));
         addComponent(new RotationComponent());
 
         addComponent(new OutOfBoundsComponent(OutOfBoundsComponent.OutOfBoundsAction.REMOVE, 500));
 
         addComponent(new TimerComponent(3000));
-
-        addComponent(new OwnedByComponent(source));
     }
 }

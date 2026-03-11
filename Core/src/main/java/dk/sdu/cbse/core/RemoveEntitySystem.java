@@ -10,8 +10,7 @@ import java.util.HashSet;
 public class RemoveEntitySystem extends BaseSystem {
     HashSet<Entity> toRemove = new HashSet<>();
 
-    public RemoveEntitySystem(World world) {
-        this.world = world;
+    public RemoveEntitySystem() {
     }
 
     @Override

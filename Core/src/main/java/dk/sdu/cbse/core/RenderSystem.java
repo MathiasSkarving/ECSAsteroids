@@ -13,8 +13,7 @@ public class RenderSystem extends BaseSystem {
     GraphicsContext gc;
     Image background;
 
-    public RenderSystem(World world, GraphicsContext gc, String backgroundImagePath) {
-        this.world = world;
+    public RenderSystem(GraphicsContext gc, String backgroundImagePath) {
         this.gc = gc;
         background = new Image(Objects.requireNonNull(getClass().getResourceAsStream(backgroundImagePath)));
     }
@@ -47,5 +46,7 @@ public class RenderSystem extends BaseSystem {
             gc.fillText(tc.text, pos.position.x + tc.offsetX, pos.position.y + tc.offsetY);
             gc.restore();
         }
+
+
     }
 }

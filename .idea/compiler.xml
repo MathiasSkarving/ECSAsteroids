@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Score-mod" />
         <module name="Enemy-mod" />
+        <module name="Common-Bullet-mod" />
         <module name="Player-mod" />
         <module name="Asteroid-mod" />
         <module name="Common-Enemy-mod" />

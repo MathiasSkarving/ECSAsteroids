@@ -27,8 +27,8 @@ public class EnemyShootingSystem extends BaseSystem {
                 double now = System.nanoTime() / (double) 1000000;
                 EnemyEntity enemyEntity = (EnemyEntity)enemy;
                 if(now - enemyEntity.lastShot > shootInterval) {
-                    RotationComponent rotationComponent = enemyEntity.getComponent(RotationComponent.class);
-                    VelocityComponent velocityComponent = enemyEntity.getComponent(VelocityComponent.class);
+                    RotationComponent rotationComponent = enemy.getComponent(RotationComponent.class);
+                    VelocityComponent velocityComponent = enemy.getComponent(VelocityComponent.class);
                     Vector2 velocity = velocityComponent.velocity;
                     Vector2 playerPosition = closestPlayer.getComponent(PositionComponent.class).position;
                     Vector2 enemyPosition = enemy.getComponent(PositionComponent.class).position;
@@ -36,7 +36,7 @@ public class EnemyShootingSystem extends BaseSystem {
                     Vector2 direction = playerPosition.subtract(enemyPosition);
                     rotationComponent.angle = Math.toDegrees(Math.atan2(direction.y, direction.x));
 
-                    EventBus.getInstance().notifySubscribers(new ShootingEvent(enemyEntity));
+                    EventBus.getInstance().notifySubscribers(new ShootingEvent(enemy));
                     enemyEntity.lastShot = now;
                 }
             }

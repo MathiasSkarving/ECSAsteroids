@@ -31,6 +31,7 @@ public class PlayerPlugin implements IGamePlugin {
         world.addEntity(player2);
         world.addSystem(new PlayerInteractionSystem());
         world.addSystem(new PlayerCircleCollisionSystem());
+        world.addSystem(new PlayerEnemyBulletCollisionSystem());
     }
 
     @Override

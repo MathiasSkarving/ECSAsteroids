@@ -48,19 +48,19 @@ public class App extends Application {
 
         InputHandler handler = new InputHandler(gameScene);
 
-        game.world.addSystem(new RenderSystem(game.world, gc, "/dk/sdu/cbse/bg.png"));
-        game.world.addSystem(new MovingSystem(game.world));
-        game.world.addSystem(new OutOfBoundsSystem(game.world));
-        game.world.addSystem(new RemoveEntitySystem(game.world));
-        game.world.addSystem(new CircleCollisionSystem(game.world));
-        game.world.addSystem(new RotationSystem(game.world));
-        game.world.addSystem(new SoundSystem(game.world));
+        World.getInstance().addSystem(new RenderSystem(gc, "/dk/sdu/cbse/bg.png"));
+        World.getInstance().addSystem(new MovingSystem());
+        World.getInstance().addSystem(new OutOfBoundsSystem());
+        World.getInstance().addSystem(new RemoveEntitySystem());
+        World.getInstance().addSystem(new CircleCollisionSystem());
+        World.getInstance().addSystem(new RotationSystem());
+        World.getInstance().addSystem(new SoundSystem());
+        World.getInstance().addSystem(new RestartSystem(game));
 
         ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
 
         for(IGamePlugin plugin : plugins){
-            plugin.start(game.world);
-            System.out.println("starting plugin:" + plugin.getClass());
+            plugin.start(World.getInstance());
         }
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -70,7 +70,7 @@ public class App extends Application {
             public void handle(long now) {
                 float deltaTime = (now - lastTime) / 1_000_000_000f;
                 lastTime = now;
-                game.world.update(deltaTime);
+                World.getInstance().update(deltaTime);
             }
         };
 

@@ -36,4 +36,8 @@ public class EventBus {
     public void unsubscribe(Subscriber subscriber, Class<? extends EventType> event) {
         eventTypeSubscriberMap.get(event).remove(subscriber);
     }
+
+    public void reset() {
+        instance = new EventBus();
+    }
 }

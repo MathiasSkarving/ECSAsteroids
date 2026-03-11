@@ -5,8 +5,7 @@ import dk.sdu.cbse.common.ecs.*;
 import java.util.HashSet;
 
 public class RotationSystem extends BaseSystem {
-    public RotationSystem(World world) {
-        this.world = world;
+    public RotationSystem() {
     }
 
     @Override

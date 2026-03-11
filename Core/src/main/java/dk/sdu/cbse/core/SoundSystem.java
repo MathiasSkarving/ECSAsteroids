@@ -10,10 +10,9 @@ import java.util.Objects;
 public class SoundSystem extends BaseSystem implements Subscriber {
     private final Media shootingMedia = new Media(Objects.requireNonNull(getClass().getResource("/dk/sdu/cbse/Pew.wav")).toExternalForm());
 
-    public SoundSystem(World world) {
+    public SoundSystem() {
         EventBus.getInstance().subscribe(this, ShootingEvent.class);
         EventBus.getInstance().subscribe(this, CollisionEvent.class);
-        this.world = world;
     }
 
     @Override

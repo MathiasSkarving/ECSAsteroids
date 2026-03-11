@@ -6,17 +6,7 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.HashSet;
 
 public class OutOfBoundsSystem extends BaseSystem {
-    public OutOfBoundsSystem(World world) {
-        this.world = world;
-        HashSet<Entity> entities = world.getEntitiesWith(CircleColliderComponent.class);
-        double maxExtend = 0;
-        for(Entity e : entities) {
-            double entitySize;
-            entitySize = e.getComponent(CircleColliderComponent.class).radius;
-            if(entitySize > maxExtend) {
-                maxExtend = entitySize;
-            }
-        }
+    public OutOfBoundsSystem() {
     }
 
     @Override

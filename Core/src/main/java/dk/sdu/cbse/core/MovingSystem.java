@@ -6,8 +6,7 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.HashSet;
 
 public class MovingSystem extends BaseSystem {
-    public MovingSystem(World world) {
-        this.world = world;
+    public MovingSystem() {
     }
 
     @Override
