@@ -11,7 +11,7 @@ public class AsteroidEntity extends Entity {
         addComponent(new PositionComponent(new Vector2(spawnX, spawnY)));
         addComponent(new VelocityComponent(startVelocity));
         addComponent(new RenderComponent());
-        addComponent(new OutOfBoundsComponent());
+        addComponent(new OutOfBoundsComponent(OutOfBoundsComponent.OutOfBoundsAction.WRAP, 250));
         addComponent(new AsteroidComponent(splitsLeft, splitsInto, scale));
         addComponent(new RotationalVelocityComponent(Helpers.getRandomNum(-200,200)));
 
@@ -30,7 +30,7 @@ public class AsteroidEntity extends Entity {
         renderComponent.fillColor = "333333";
 
         OutOfBoundsComponent outOfBoundsComponent = getComponent(OutOfBoundsComponent.class);
-        outOfBoundsComponent.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.BOUNCE;
+        outOfBoundsComponent.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.WRAP;
 
         CircleColliderComponent circleColliderComponent = getComponent(CircleColliderComponent.class);
         circleColliderComponent.radius = Helpers.calculateColliderRadiusFromVertices(renderComponent.vertices);

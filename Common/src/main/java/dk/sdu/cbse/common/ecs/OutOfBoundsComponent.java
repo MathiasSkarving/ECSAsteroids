@@ -1,6 +1,8 @@
 package dk.sdu.cbse.common.ecs;
 
 public class OutOfBoundsComponent extends Component{
+    public double howMuchCanIGoOffTheMap;
+
     public enum OutOfBoundsAction {
         REMOVE,
         WRAP,
@@ -8,4 +10,9 @@ public class OutOfBoundsComponent extends Component{
     }
 
     public OutOfBoundsAction outOfBoundsAction;
+
+    public OutOfBoundsComponent(OutOfBoundsAction outOfBoundsAction, double howMuchCanIGoOffTheMap) {
+        this.outOfBoundsAction = outOfBoundsAction;
+        this.howMuchCanIGoOffTheMap = howMuchCanIGoOffTheMap;
+    }
 }

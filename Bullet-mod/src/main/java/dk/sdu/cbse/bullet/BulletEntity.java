@@ -25,9 +25,7 @@ public class BulletEntity extends Entity {
         addComponent(new BulletComponent());
         addComponent(new RotationComponent());
 
-        addComponent(new OutOfBoundsComponent());
-        OutOfBoundsComponent outOfBoundsComponent = getComponent(OutOfBoundsComponent.class);
-        outOfBoundsComponent.outOfBoundsAction = OutOfBoundsComponent.OutOfBoundsAction.BOUNCE;
+        addComponent(new OutOfBoundsComponent(OutOfBoundsComponent.OutOfBoundsAction.REMOVE, 500));
 
         addComponent(new TimerComponent(3000));
 

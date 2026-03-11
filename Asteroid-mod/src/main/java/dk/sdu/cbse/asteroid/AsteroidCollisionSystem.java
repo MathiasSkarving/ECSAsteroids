@@ -28,7 +28,6 @@ public class AsteroidCollisionSystem extends BaseSystem implements Subscriber {
             double overlap = (p1.position.subtract(p2.position)).magnitude() - (c1.radius + c2.radius);
             Vector2 collisionNormal = p1.position.subtract(p2.position).normalize();
 
-
             if (overlap < 0) {
                 p1.position = p1.position.subtract(collisionNormal.scale(overlap / 2));
                 p2.position = p2.position.add(collisionNormal.scale(overlap / 2));

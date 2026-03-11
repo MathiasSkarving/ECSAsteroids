@@ -13,7 +13,7 @@ public class PlayerEntity extends Entity {
         addComponent(new RenderComponent());
         addComponent(new RotationComponent());
         addComponent(new PlayerComponent(id, gameActionGameKeyHashMap));
-        addComponent(new OutOfBoundsComponent());
+        addComponent(new OutOfBoundsComponent(OutOfBoundsComponent.OutOfBoundsAction.BOUNCE, 0));
         addComponent(new CircleColliderComponent());
         addComponent(new AccelerationComponent(new Vector2(0,0)));
         addComponent(new RotationalVelocityComponent(0));

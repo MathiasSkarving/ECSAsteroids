@@ -6,8 +6,6 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.HashSet;
 
 public class OutOfBoundsSystem extends BaseSystem {
-    double outsideExtend;
-
     public OutOfBoundsSystem(World world) {
         this.world = world;
         HashSet<Entity> entities = world.getEntitiesWith(CircleColliderComponent.class);
@@ -19,8 +17,6 @@ public class OutOfBoundsSystem extends BaseSystem {
                 maxExtend = entitySize;
             }
         }
-
-        outsideExtend = maxExtend;
     }
 
     @Override
@@ -30,31 +26,31 @@ public class OutOfBoundsSystem extends BaseSystem {
             OutOfBoundsComponent outOfBoundsComponent = e.getComponent(OutOfBoundsComponent.class);
             if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.WRAP) {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
-                if(pos.position.x > world.getWorldWidth() + outsideExtend) {
-                    pos.position.x = -outsideExtend;
+                if(pos.position.x > world.getWorldWidth() + outOfBoundsComponent.howMuchCanIGoOffTheMap) {
+                    pos.position.x = -outOfBoundsComponent.howMuchCanIGoOffTheMap;
                 }
-                if(pos.position.x < -outsideExtend) {
-                    pos.position.x = world.getWorldWidth() + outsideExtend;
+                if(pos.position.x < -outOfBoundsComponent.howMuchCanIGoOffTheMap) {
+                    pos.position.x = world.getWorldWidth() + outOfBoundsComponent.howMuchCanIGoOffTheMap;
                 }
-                if(pos.position.y > world.getWorldHeight() + outsideExtend) {
-                    pos.position.y = -outsideExtend;
+                if(pos.position.y > world.getWorldHeight() + outOfBoundsComponent.howMuchCanIGoOffTheMap) {
+                    pos.position.y = -outOfBoundsComponent.howMuchCanIGoOffTheMap;
                 }
-                if(pos.position.y < -outsideExtend) {
-                    pos.position.y = world.getWorldHeight() + outsideExtend;
+                if(pos.position.y < -outOfBoundsComponent.howMuchCanIGoOffTheMap) {
+                    pos.position.y = world.getWorldHeight() + outOfBoundsComponent.howMuchCanIGoOffTheMap;
                 }
             }
             else if(outOfBoundsComponent.outOfBoundsAction == OutOfBoundsComponent.OutOfBoundsAction.REMOVE) {
                 PositionComponent pos = e.getComponent(PositionComponent.class);
-                if(pos.position.x > world.getWorldWidth() + outsideExtend) {
+                if(pos.position.x > world.getWorldWidth() + outOfBoundsComponent.howMuchCanIGoOffTheMap) {
                     e.removeThis = true;
                 }
-                if(pos.position.x < -outsideExtend) {
+                if(pos.position.x < -outOfBoundsComponent.howMuchCanIGoOffTheMap) {
                     e.removeThis = true;
                 }
-                if(pos.position.y > world.getWorldHeight() + outsideExtend) {
+                if(pos.position.y > world.getWorldHeight() + outOfBoundsComponent.howMuchCanIGoOffTheMap) {
                     e.removeThis = true;
                 }
-                if(pos.position.y < -outsideExtend) {
+                if(pos.position.y < -outOfBoundsComponent.howMuchCanIGoOffTheMap) {
                     e.removeThis = true;
                 }
             }
