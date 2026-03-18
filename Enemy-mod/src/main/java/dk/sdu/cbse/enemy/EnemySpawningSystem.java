@@ -5,7 +5,7 @@ import dk.sdu.cbse.common.ecs.*;
 import java.util.Random;
 
 public class EnemySpawningSystem extends BaseSystem {
-    double spawnInterval = 10000;
+    double spawnInterval = 8000;
     double lastSpawn;
 
     @Override

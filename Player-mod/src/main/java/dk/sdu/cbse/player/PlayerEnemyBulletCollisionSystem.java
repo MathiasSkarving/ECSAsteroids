@@ -17,7 +17,6 @@ public class PlayerEnemyBulletCollisionSystem extends BaseSystem implements Subs
 
         boolean isEntity1ABulletFromEnemy = false;
         if (collisionEntity1.getComponent(BulletComponent.class) != null) {
-            System.out.println("a bullet");
 
             if (collisionEntity1.getComponent(BulletComponent.class).owner.getComponent(PlayerComponent.class) == null) {
                 isEntity1ABulletFromEnemy = true;
@@ -26,7 +25,6 @@ public class PlayerEnemyBulletCollisionSystem extends BaseSystem implements Subs
 
         boolean isEntity2ABulletFromEnemy = false;
         if (collisionEntity2.getComponent(BulletComponent.class) != null) {
-            System.out.println("a bullet");
 
             if (collisionEntity2.getComponent(BulletComponent.class).owner.getComponent(PlayerComponent.class) == null) {
                 isEntity2ABulletFromEnemy = true;

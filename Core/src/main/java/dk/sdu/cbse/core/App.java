@@ -10,6 +10,9 @@ import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
@@ -59,7 +62,12 @@ public class App extends Application {
 
         ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
 
+        List<IGamePlugin> pluginList = new ArrayList<>();
         for(IGamePlugin plugin : plugins){
+            pluginList.add(plugin);
+        }
+        Collections.sort(pluginList);
+        for(IGamePlugin plugin : pluginList) {
             plugin.start(World.getInstance());
         }
 

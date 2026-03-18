@@ -13,4 +13,9 @@ public class BulletPlugin implements IGamePlugin {
     public void stop(World world) {
 
     }
+
+    @Override
+    public Integer getPriority() {
+        return 2;
+    }
 }

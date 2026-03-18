@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class ShootingSystem extends BaseSystem implements Subscriber {
 
-    private double bulletSpeed = 500;
+    private double bulletSpeed = 350;
 
     public ShootingSystem() {
         EventBus.getInstance().subscribe(this, ShootingEvent.class);
@@ -31,7 +31,7 @@ public class ShootingSystem extends BaseSystem implements Subscriber {
             positionComponent = source.getComponent(PositionComponent.class);
             Vector2 bulletVelocity = new Vector2(rotationComponent.angle + rotationComponent.angleOffset);
             bulletVelocity = bulletVelocity.scale(bulletSpeed);
-            world.addEntity(new BulletEntity(5, bulletVelocity, positionComponent.position, source));
+            world.addEntity(new BulletEntity(8, bulletVelocity, positionComponent.position, source));
         }
     }
 
