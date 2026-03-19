@@ -5,12 +5,23 @@ import dk.sdu.cbse.common.ecs.*;
 import java.util.Random;
 
 public class AsteroidSpawningSystem extends BaseSystem {
-    double spawnInterval = 15000;
+    double baseSpawnInterval = 20000;
+    double spawnInterval;
     double lastSpawn;
+    double startTime;
+    double elapsedTime;
+
+    public AsteroidSpawningSystem() {
+        startTime = (double) System.nanoTime() / 1000000;
+        lastSpawn = startTime;
+    }
 
     @Override
     public void update(float dt) {
         double now = (double) System.nanoTime() / 1000000;
+        elapsedTime = now - startTime;
+        spawnInterval = baseSpawnInterval * Math.pow(0.75, elapsedTime / 60000); // Exponential spawn rate increase
+
 
         if (now - lastSpawn > spawnInterval) {
             Vector2 startVel = Helpers.getRandomVector().scale(1);

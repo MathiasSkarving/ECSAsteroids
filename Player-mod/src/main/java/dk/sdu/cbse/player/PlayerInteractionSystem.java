@@ -6,8 +6,8 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.HashSet;
 
 public class PlayerInteractionSystem extends BaseSystem implements Subscriber {
-    double shootInterval = 750;
-    double thrustForce = 1500;
+    double shootInterval = 350;
+    double thrustForce = 1000;
     double dragForce = 0.2;
     HashSet<GameKey> keysPressed;
 

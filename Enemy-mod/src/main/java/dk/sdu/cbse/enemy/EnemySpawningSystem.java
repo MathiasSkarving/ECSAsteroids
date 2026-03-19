@@ -5,8 +5,12 @@ import dk.sdu.cbse.common.ecs.*;
 import java.util.Random;
 
 public class EnemySpawningSystem extends BaseSystem {
-    double spawnInterval = 8000;
+    double spawnInterval = 10000;
     double lastSpawn;
+
+    public EnemySpawningSystem() {
+        lastSpawn = (double) System.nanoTime() / 1000000; // So the enemy doesnt spawn immediately
+    }
 
     @Override
     public void update(float dt) {

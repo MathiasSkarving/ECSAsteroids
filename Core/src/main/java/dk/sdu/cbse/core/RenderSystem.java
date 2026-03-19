@@ -41,7 +41,7 @@ public class RenderSystem extends BaseSystem {
             TextComponent     tc  = e.getComponent(TextComponent.class);
             PositionComponent pos = e.getComponent(PositionComponent.class);
             gc.save();
-            gc.setFont(javafx.scene.text.Font.font(tc.font, tc.fontSize));
+            gc.setFont(tc.font);
             gc.setFill(Color.web(tc.color));
             gc.fillText(tc.text, pos.position.x + tc.offsetX, pos.position.y + tc.offsetY);
             gc.restore();

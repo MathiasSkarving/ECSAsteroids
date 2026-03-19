@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class ShootingSystem extends BaseSystem implements Subscriber {
 
-    private double bulletSpeed = 350;
+    private final double bulletSpeed = 650;
 
     public ShootingSystem() {
         EventBus.getInstance().subscribe(this, ShootingEvent.class);

@@ -7,7 +7,8 @@ import java.util.HashSet;
 import java.util.Vector;
 
 public class EnemyShootingSystem extends BaseSystem {
-    public double shootInterval = 1000;
+    public double shootInterval = 4000;
+    public double shootDistance = 350;
     @Override
     public void update(float dt) {
         HashSet<Entity> players = new HashSet<>();
@@ -23,7 +24,7 @@ public class EnemyShootingSystem extends BaseSystem {
                 }
             }
             if(closestPlayer == null) return;
-            if(Helpers.calculateDistance(enemy.getComponent(PositionComponent.class), closestPlayer.getComponent(PositionComponent.class)) < 500) {
+            if(Helpers.calculateDistance(enemy.getComponent(PositionComponent.class), closestPlayer.getComponent(PositionComponent.class)) < shootDistance) {
                 double now = System.nanoTime() / (double) 1000000;
                 EnemyEntity enemyEntity = (EnemyEntity)enemy;
                 if(now - enemyEntity.lastShot > shootInterval) {
