@@ -13,7 +13,7 @@ public class AsteroidSpawningSystem extends BaseSystem {
 
     public AsteroidSpawningSystem() {
         startTime = (double) System.nanoTime() / 1000000;
-        lastSpawn = startTime;
+        lastSpawn = 0;
     }
 
     @Override

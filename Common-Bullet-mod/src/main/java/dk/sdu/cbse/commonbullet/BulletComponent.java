@@ -11,5 +11,6 @@ public class BulletComponent extends Component {
     }
 
     public BulletComponent() {
+
     }
 }

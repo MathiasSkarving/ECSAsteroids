@@ -2,11 +2,17 @@ package dk.sdu.cbse.bullet;
 
 import dk.sdu.cbse.common.ecs.IGamePlugin;
 import dk.sdu.cbse.common.ecs.World;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 public class BulletPlugin implements IGamePlugin {
+    private AnnotationConfigApplicationContext context;
+
     @Override
     public void start(World world) {
-        world.addSystem(new ShootingSystem());
+        context = new AnnotationConfigApplicationContext(BulletConfig.class);
+        world.addSystem(context.getBean(ShootingSystem.class));
     }
 
     @Override

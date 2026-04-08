@@ -3,15 +3,24 @@ package dk.sdu.cbse.bullet;
 import dk.sdu.cbse.common.ecs.*;
 import dk.sdu.cbse.common.ecs.BaseSystem;
 import dk.sdu.cbse.commonbullet.BulletComponent;
-
 import java.util.HashSet;
 
 public class ShootingSystem extends BaseSystem implements Subscriber {
+    private final double bulletSpeed;
+    private final double bulletRadius;
+    private final double bulletAirTime;
+    private final double bulletOffTheMapDistanceBeforeRemoval;
+    private final String color;
+    private final int resolution;
 
-    private final double bulletSpeed = 650;
-
-    public ShootingSystem() {
+    public ShootingSystem(double bulletRadius, double bulletSpeed, double bulletAirTime, double bulletOffTheMapDistanceBeforeRemoval, String color, int resolution) {
         EventBus.getInstance().subscribe(this, ShootingEvent.class);
+        this.bulletRadius = bulletRadius;
+        this.bulletSpeed = bulletSpeed;
+        this.bulletAirTime = bulletAirTime;
+        this.bulletOffTheMapDistanceBeforeRemoval = bulletOffTheMapDistanceBeforeRemoval;
+        this.color = color;
+        this.resolution = resolution;
     }
 
     @Override
@@ -31,7 +40,7 @@ public class ShootingSystem extends BaseSystem implements Subscriber {
             positionComponent = source.getComponent(PositionComponent.class);
             Vector2 bulletVelocity = new Vector2(rotationComponent.angle + rotationComponent.angleOffset);
             bulletVelocity = bulletVelocity.scale(bulletSpeed);
-            world.addEntity(new BulletEntity(8, bulletVelocity, positionComponent.position, source));
+            world.addEntity(new BulletEntity(bulletRadius, bulletVelocity, positionComponent.position, source, bulletAirTime, bulletOffTheMapDistanceBeforeRemoval, resolution, color));
         }
     }
 
