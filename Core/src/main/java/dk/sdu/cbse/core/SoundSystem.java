@@ -3,12 +3,26 @@ package dk.sdu.cbse.core;
 import dk.sdu.cbse.common.ecs.*;
 import javafx.scene.media.*;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class SoundSystem extends BaseSystem implements Subscriber {
-    private final Media shootingMedia = new Media(Objects.requireNonNull(getClass().getResource("/dk/sdu/cbse/Pew.wav")).toExternalForm());
+public class SoundSystem extends BaseSystem implements Subscriber, IGamePlugin {
+    @Override
+    public void start(World world) {
+        world.addSystem(this);
+    }
+
+    @Override
+    public void stop(World world) {
+
+    }
+
+    @Override
+    public Integer getPriority() {
+        return 0;
+    }
+
+    private final Media shootingMedia = new Media(Objects.requireNonNull(getClass().getResource("/Pew.wav")).toExternalForm());
 
     public SoundSystem() {
         EventBus.getInstance().subscribe(this, ShootingEvent.class);

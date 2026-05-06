@@ -1,9 +1,12 @@
 package dk.sdu.cbse.common.ecs;
 
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.*;
 
 public class World {
     Map<Class<? extends Component>, HashSet<Entity>> componentEntityMap = new HashMap<>();
+    GraphicsContext gc;
     List<BaseSystem> baseSystems = new ArrayList<>();
     private int worldWidth;
     private int worldHeight;
@@ -18,6 +21,14 @@ public class World {
             instance = new World();
         }
         return instance;
+    }
+
+    public void setGraphicsContext(GraphicsContext gc) {
+        this.gc = gc;
+    }
+
+    public GraphicsContext getGraphicsContext() {
+        return gc;
     }
 
     public void setWorldWidth(int width) {
@@ -84,9 +95,11 @@ public class World {
     public void reset() {
         int oldWidth = worldWidth;
         int oldHeight = worldHeight;
+        GraphicsContext oldGC = gc;
         instance = new World();
         instance.setWorldWidth(oldWidth);
         instance.setWorldHeight(oldHeight);
+        instance.setGraphicsContext(oldGC);
         EventBus.getInstance().reset();
     }
 }

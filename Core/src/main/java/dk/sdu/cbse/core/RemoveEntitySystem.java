@@ -1,13 +1,10 @@
 package dk.sdu.cbse.core;
 
-import dk.sdu.cbse.common.ecs.Entity;
-import dk.sdu.cbse.common.ecs.RenderComponent;
-import dk.sdu.cbse.common.ecs.BaseSystem;
-import dk.sdu.cbse.common.ecs.World;
+import dk.sdu.cbse.common.ecs.*;
 
 import java.util.HashSet;
 
-public class RemoveEntitySystem extends BaseSystem {
+public class RemoveEntitySystem extends BaseSystem implements IGamePlugin {
     HashSet<Entity> toRemove = new HashSet<>();
 
     public RemoveEntitySystem() {
@@ -24,5 +21,20 @@ public class RemoveEntitySystem extends BaseSystem {
         for(Entity e : toRemove) {
             world.removeEntity(e);
         }
+    }
+
+    @Override
+    public void start(World world) {
+        world.addSystem(this);
+    }
+
+    @Override
+    public void stop(World world) {
+
+    }
+
+    @Override
+    public Integer getPriority() {
+        return 0;
     }
 }

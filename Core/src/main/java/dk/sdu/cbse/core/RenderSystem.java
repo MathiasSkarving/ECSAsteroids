@@ -5,23 +5,30 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Objects;
 
-public class RenderSystem extends BaseSystem {
+@Component
+public class RenderSystem extends BaseSystem implements IGamePlugin {
     GraphicsContext gc;
-    Image background;
 
-    public RenderSystem(GraphicsContext gc, String backgroundImagePath) {
-        this.gc = gc;
-        background = new Image(Objects.requireNonNull(getClass().getResourceAsStream(backgroundImagePath)));
-    }
+    private Image background;
+
+    public RenderSystem() {}
 
     @Override
     public void update(float dt) {
+        if (gc == null) {
+            return;
+        }
         gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-        gc.drawImage(background, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+        if (background != null) {
+            gc.drawImage(background, 0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+        }
 
         HashSet<Entity> entitiesToRender = world.getEntitiesWith(RenderComponent.class, PositionComponent.class, RotationComponent.class);
         for (Entity e : entitiesToRender) {
@@ -48,5 +55,26 @@ public class RenderSystem extends BaseSystem {
         }
 
 
+    }
+
+    @Override
+    public void start(World world) {
+        world.addSystem(this);
+        gc = world.getGraphicsContext();
+    }
+
+    @Autowired
+    public void setImageBackground(Image image) {
+        background = image;
+    }
+
+    @Override
+    public void stop(World world) {
+
+    }
+
+    @Override
+    public Integer getPriority() {
+        return 0;
     }
 }

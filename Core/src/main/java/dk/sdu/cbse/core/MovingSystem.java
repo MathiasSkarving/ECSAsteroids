@@ -5,7 +5,7 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.HashSet;
 
-public class MovingSystem extends BaseSystem {
+public class MovingSystem extends BaseSystem implements IGamePlugin {
     public MovingSystem() {
     }
 
@@ -18,5 +18,20 @@ public class MovingSystem extends BaseSystem {
 
            posComp.position = posComp.position.add(velComp.velocity.scale(dt));
         }
+    }
+
+    @Override
+    public void start(World world) {
+        world.addSystem(this);
+    }
+
+    @Override
+    public void stop(World world) {
+
+    }
+
+    @Override
+    public Integer getPriority() {
+        return 0;
     }
 }

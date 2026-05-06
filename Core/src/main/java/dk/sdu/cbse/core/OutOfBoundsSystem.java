@@ -5,7 +5,7 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 
 import java.util.HashSet;
 
-public class OutOfBoundsSystem extends BaseSystem {
+public class OutOfBoundsSystem extends BaseSystem implements IGamePlugin {
     public OutOfBoundsSystem() {
     }
 
@@ -67,5 +67,20 @@ public class OutOfBoundsSystem extends BaseSystem {
                 }
             }
         }
+    }
+
+    @Override
+    public void start(World world) {
+        world.addSystem(this);
+    }
+
+    @Override
+    public void stop(World world) {
+
+    }
+
+    @Override
+    public Integer getPriority() {
+        return 0;
     }
 }

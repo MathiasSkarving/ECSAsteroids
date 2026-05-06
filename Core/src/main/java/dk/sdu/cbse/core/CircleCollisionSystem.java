@@ -6,7 +6,7 @@ import dk.sdu.cbse.common.ecs.BaseSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CircleCollisionSystem extends BaseSystem {
+public class CircleCollisionSystem extends BaseSystem implements IGamePlugin {
     public CircleCollisionSystem() {
     }
 
@@ -33,5 +33,20 @@ public class CircleCollisionSystem extends BaseSystem {
 
     public void NotifyCollision(CollisionEvent collisionEvent) {
         EventBus.getInstance().notifySubscribers(collisionEvent);
+    }
+
+    @Override
+    public void start(World world) {
+        world.addSystem(this);
+    }
+
+    @Override
+    public void stop(World world) {
+
+    }
+
+    @Override
+    public Integer getPriority() {
+        return 0;
     }
 }

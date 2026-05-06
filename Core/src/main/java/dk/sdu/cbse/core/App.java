@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.ImageView;
 import java.awt.*;
@@ -23,66 +25,24 @@ import java.awt.*;
 /**
  * JavaFX App
  */
+@Component
 public class App extends Application {
 
     private static Scene scene;
     private Game game;
 
-    private int width = (int)(1920);
-    private int height = (int)(1080);
-
     @Override
     public void start(Stage stage) throws IOException {
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ModuleConfig.class);
 
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        width = (int)size.getWidth();
-        height = (int)size.getHeight();
-        Group root = new Group();
-        Scene gameScene = new Scene(root);
-        stage.setScene(gameScene);
-        Canvas canvas = new Canvas(width, height);
-        root.getChildren().add(canvas);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        for (String beanName : ctx.getBeanDefinitionNames()) {
+            System.out.println(beanName);
+        }
 
-        game = new Game(width, height, gc);
-
+        Game game = ctx.getBean(Game.class);
+        game.startGame(stage);
         stage.show();
         stage.setTitle("AsteroidsFX");
-
-        InputHandler handler = new InputHandler(gameScene);
-
-        World.getInstance().addSystem(new RenderSystem(gc, "/dk/sdu/cbse/bg.png"));
-        World.getInstance().addSystem(new MovingSystem());
-        World.getInstance().addSystem(new OutOfBoundsSystem());
-        World.getInstance().addSystem(new RemoveEntitySystem());
-        World.getInstance().addSystem(new CircleCollisionSystem());
-        World.getInstance().addSystem(new RotationSystem());
-        World.getInstance().addSystem(new SoundSystem());
-        World.getInstance().addSystem(new RestartSystem(game));
-
-        ServiceLoader<IGamePlugin> plugins = ServiceLoader.load(IGamePlugin.class);
-
-        List<IGamePlugin> pluginList = new ArrayList<>();
-        for(IGamePlugin plugin : plugins){
-            pluginList.add(plugin);
-        }
-        Collections.sort(pluginList);
-        for(IGamePlugin plugin : pluginList) {
-            plugin.start(World.getInstance());
-        }
-
-        AnimationTimer gameLoop = new AnimationTimer() {
-            private long lastTime = 0;
-
-            @Override
-            public void handle(long now) {
-                float deltaTime = (now - lastTime) / 1_000_000_000f;
-                lastTime = now;
-                World.getInstance().update(deltaTime);
-            }
-        };
-
-        gameLoop.start();
     }
 
     public static void main(String[] args) {
