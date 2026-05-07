@@ -11,7 +11,8 @@ import java.util.ServiceLoader;
 import static java.util.stream.Collectors.toList;
 
 @Configuration
-@Import(BackgroundConfig.class)
+@ComponentScan(basePackages = {"dk.sdu.cbse"})
+@Import(ResourceConfig.class)
 public class ModuleConfig {
     public ModuleConfig() {
     }

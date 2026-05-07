@@ -6,8 +6,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
     <parent>
@@ -78,6 +78,29 @@
             <artifactId>spring-jcl</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-observation</artifactId>
+            <version>1.12.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-commons</artifactId>
+            <version>1.12.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.17.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <build>
         <resources>
@@ -97,7 +120,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <includeArtifactIds>javafx-controls,javafx-graphics,javafx-base,spring-context,spring-core,spring-beans,spring-aop,spring-expression,spring-jcl, javafx-media</includeArtifactIds>
+                            <includeArtifactIds>javafx-controls,javafx-graphics,javafx-base,spring-context,spring-core,spring-beans,spring-aop,spring-expression,spring-jcl, javafx-media, spring-web, micrometer-observation, micrometer-commons, jackson-databind,jackson-core,jackson-annotations</includeArtifactIds>
                             <outputDirectory>../mods-mvn</outputDirectory>
                         </configuration>
                     </execution>
@@ -107,8 +130,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>25</source>
-                    <target>25</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
         </plugins>

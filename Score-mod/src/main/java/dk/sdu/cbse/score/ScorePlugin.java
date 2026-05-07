@@ -21,8 +21,6 @@ public class ScorePlugin implements IGamePlugin {
                 }
             }
         }
-
-        world.addSystem(new ScoreSystem());
     }
 
     @Override

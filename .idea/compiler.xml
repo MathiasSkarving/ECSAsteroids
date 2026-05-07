@@ -9,6 +9,7 @@
         <module name="Score-mod" />
         <module name="Enemy-mod" />
         <module name="Common-Bullet-mod" />
+        <module name="ScoringService" />
         <module name="Player-mod" />
         <module name="Asteroid-mod" />
         <module name="Common-Enemy-mod" />
@@ -23,5 +24,10 @@
       <module name="Asteroid.test" target="25" />
       <module name="untitled" target="25" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ScoringService" options="-parameters" />
+    </option>
   </component>
 </project>

@@ -17,6 +17,7 @@ import java.util.ServiceLoader;
 
 import dk.sdu.cbse.common.ecs.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.ImageView;
