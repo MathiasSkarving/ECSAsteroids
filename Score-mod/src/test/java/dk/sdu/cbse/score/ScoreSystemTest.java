@@ -35,6 +35,7 @@ class ScoreSystemTest {
     void tearDown() {
     }
 
+    ///  Testing that the score service is actually called
     @Test
     void testServiceCalled() {
         when(mockService.incrementAndGetScore(eq(anyInt()), eq(anyInt()))).thenReturn(eq(anyInt()));
@@ -49,6 +50,7 @@ class ScoreSystemTest {
         verify(mockService, times(1)).incrementAndGetScore(eq(anyInt()), eq(anyInt()));
     }
 
+    ///  Testing that the score system calls the score service with the expected input.
     @Test
     void testServiceCalledWithCorrectPoints() {
         int asteroidSize = 100;
@@ -67,13 +69,12 @@ class ScoreSystemTest {
         verify(mockService, times(1)).incrementAndGetScore(eq(playerComponent.playerId), eq(expectedPointsAdded));
     }
 
+    /// Testing that the text component of the Score Entity is updated with the expected values when the event is received.
     @Test
     void testUIUpdatesWithReturnedValueFromService() {
-        // 1. Arrange
         int playerId = 1;
-        int pointsToReturn = 999; // The "fake" score returned by our API
+        int pointsToReturn = 999;
 
-        // Tell the mock: when called, return exactly 999
         when(mockService.incrementAndGetScore(anyInt(), anyInt())).thenReturn(pointsToReturn);
 
         Entity player = new PlayerEntity("000000", playerId, new HashMap<>(), 0, 0, 0);
@@ -88,11 +89,8 @@ class ScoreSystemTest {
 
         AsteroidDestructionEvent event = new AsteroidDestructionEvent(bullet, 1);
 
-        // 2. Act
         scoreSystem.onEvent(event);
 
-        // 3. Assert
-        // Verify that the TextComponent was updated with the value the service returned
         assertEquals("Player " + playerId + ": " + pointsToReturn, textComp.text);
     }
 }
