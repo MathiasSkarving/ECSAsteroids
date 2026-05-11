@@ -16,6 +16,13 @@ public class ScoreSystem extends BaseSystem implements Subscriber, IGamePlugin {
     public ScoreSystem() {
     }
 
+    public ScoreSystem(ScoreService scoreService) {
+        this.scoreService = scoreService;
+    }
+
+    public int convertAsteroidSizeToPoints(double asteroidSize) {
+        return (int) (100 * (1f / (float) asteroidSize));
+    }
 
     @Override
     public void onEvent(EventType event) {
@@ -42,7 +49,7 @@ public class ScoreSystem extends BaseSystem implements Subscriber, IGamePlugin {
         HashSet<Entity> entities = world.getEntitiesWith(ScoreComponent.class, TextComponent.class);
         PlayerComponent player = bulletResponsibleComponent.owner.getComponent(PlayerComponent.class);
         int playerId = player.playerId;
-        int pointsToAdd = (int) (100 * (1f / (float) asteroidDestructionEvent.asteroidSize));
+        int pointsToAdd = convertAsteroidSizeToPoints(asteroidDestructionEvent.asteroidSize);
 
         int newScore = scoreService.incrementAndGetScore(playerId, pointsToAdd);
         if (newScore == -1) {
