@@ -38,16 +38,16 @@ class ScoreSystemTest {
     ///  Testing that the score service is actually called
     @Test
     void testServiceCalled() {
-        when(mockService.incrementAndGetScore(eq(anyInt()), eq(anyInt()))).thenReturn(eq(anyInt()));
+        when(mockService.incrementAndGetScore(anyInt(), anyInt())).thenReturn(42);
         Entity player = new PlayerEntity("000000", 1, new HashMap<>(), 0, 0, 0);
         Entity bullet = new BulletEntity(0,new Vector2(),new Vector2(), player, 0, 0,0, "000000");
         bullet.addComponent(new OwnedByComponent(player));
 
-        AsteroidDestructionEvent event = new AsteroidDestructionEvent(bullet, anyInt());
+        AsteroidDestructionEvent event = new AsteroidDestructionEvent(bullet, 5);
 
         scoreSystem.onEvent(event);
 
-        verify(mockService, times(1)).incrementAndGetScore(eq(anyInt()), eq(anyInt()));
+        verify(mockService, times(1)).incrementAndGetScore(anyInt(), anyInt());
     }
 
     ///  Testing that the score system calls the score service with the expected input.
