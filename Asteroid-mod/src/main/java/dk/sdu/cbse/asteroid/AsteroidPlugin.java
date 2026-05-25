@@ -6,7 +6,6 @@ import dk.sdu.cbse.common.ecs.World;
 public class AsteroidPlugin implements IGamePlugin {
     @Override
     public void start(World world) {
-        System.out.println("Started asteroid");
         world.addSystem(new AsteroidCollisionSystem());
         world.addSystem(new AsteroidSpawningSystem());
     }

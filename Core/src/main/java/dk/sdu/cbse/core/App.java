@@ -35,11 +35,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ModuleConfig.class);
-
-        for (String beanName : ctx.getBeanDefinitionNames()) {
-            System.out.println(beanName);
-        }
-
         Game game = ctx.getBean(Game.class);
         game.startGame(stage);
         stage.show();
