@@ -29,9 +29,6 @@ import java.awt.*;
 @Component
 public class App extends Application {
 
-    private static Scene scene;
-    private Game game;
-
     @Override
     public void start(Stage stage) throws IOException {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ModuleConfig.class);

@@ -27,22 +27,18 @@ public class ScoreSystem extends BaseSystem implements Subscriber, IGamePlugin {
     @Override
     public void onEvent(EventType event) {
         if(scoreService == null) {
-            System.out.println("ScoreSystem: scoreService is null, cannot update score");
             return;
         }
 
-        System.out.println("ScoreSystem got event: " + event.getClass());
         if (event.getClass() != AsteroidDestructionEvent.class) return;
         AsteroidDestructionEvent asteroidDestructionEvent = (AsteroidDestructionEvent) event;
         BulletComponent bulletResponsibleComponent;
         bulletResponsibleComponent = asteroidDestructionEvent.desctructionResponsible.getComponent(BulletComponent.class);
 
         if (bulletResponsibleComponent == null) {
-            System.out.println("Bullet is null");
             return;
         }
         if (bulletResponsibleComponent.owner.getComponent(PlayerComponent.class) == null) {
-            System.out.println("Player responsible is not a player");
             return;
         }
 
@@ -53,7 +49,6 @@ public class ScoreSystem extends BaseSystem implements Subscriber, IGamePlugin {
 
         int newScore = scoreService.incrementAndGetScore(playerId, pointsToAdd);
         if (newScore == -1) {
-            System.out.println("ScoreService returned -1, cannot update score");
             return;
         }
 

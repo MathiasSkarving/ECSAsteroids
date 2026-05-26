@@ -16,7 +16,10 @@ public class PlayerCircleCollisionSystem extends BaseSystem implements Subscribe
         Entity collisionEntity1 = ((CollisionEvent)event).entity1;
         Entity collisionEntity2 = ((CollisionEvent)event).entity2;
 
-        ArrayList<Entity> worldPlayers = new ArrayList<>(world.getEntitiesWith(dk.sdu.cbse.common.ecs.PlayerComponent.class, PositionComponent.class, CircleColliderComponent.class));
+        // Finds players of the world
+        ArrayList<Entity> worldPlayers = new ArrayList<>(world.getEntitiesWith(PlayerComponent.class, PositionComponent.class, CircleColliderComponent.class));
+
+        // Checks if the event contains two players
         if(worldPlayers.contains(collisionEntity1) && worldPlayers.contains(collisionEntity2)) {
             VelocityComponent v1 = collisionEntity1.getComponent(VelocityComponent.class);
             VelocityComponent v2 = collisionEntity2.getComponent(VelocityComponent.class);
@@ -25,13 +28,17 @@ public class PlayerCircleCollisionSystem extends BaseSystem implements Subscribe
             CircleColliderComponent c1 = collisionEntity1.getComponent(CircleColliderComponent.class);
             CircleColliderComponent c2 = collisionEntity2.getComponent(CircleColliderComponent.class);
 
+            // Calculates overlap and normalized vector between the two colliding players
             double overlap = (p1.position.subtract(p2.position)).magnitude() - (c1.radius + c2.radius);
             Vector2 collisionNormal = p1.position.subtract(p2.position).normalize();
 
+            // Pushes players apart so they are not inside each other
             if(overlap < 0) {
                 p1.position = p1.position.subtract(collisionNormal.scale(overlap/2));
                 p2.position = p2.position.add(collisionNormal.scale(overlap/2));
             }
+
+            // Simulates bouncing effect by swapping velocities
             Vector2 OldVel = v1.velocity;
             v1.velocity = v2.velocity;
             v2.velocity = OldVel;

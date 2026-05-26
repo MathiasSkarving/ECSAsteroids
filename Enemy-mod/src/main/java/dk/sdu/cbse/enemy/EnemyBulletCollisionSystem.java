@@ -33,7 +33,7 @@ public class EnemyBulletCollisionSystem extends BaseSystem implements Subscriber
                 }
             }
 
-            // If one of the bullets is owned by an enemy
+            // If a player owns one of the bullets
             if (isEntity1ABulletFromPlayer || isEntity2ABulletFromPlayer) {
 
                 if (isEntity1ABulletFromPlayer) {
@@ -49,8 +49,6 @@ public class EnemyBulletCollisionSystem extends BaseSystem implements Subscriber
                     }
                 }
             }
-
-
         }
     }
 }
